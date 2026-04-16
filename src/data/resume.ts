@@ -9,6 +9,7 @@ import type {
   NavItem,
   ServiceArea,
   DesignPrinciple,
+  Testimonial,
 } from '../types';
 
 export const navigation: NavItem[] = [
@@ -387,6 +388,41 @@ export const contact: ContactData = {
 };
 
 export const WHATSAPP_URL = 'https://wa.me/919999766876?text=' + encodeURIComponent('Hi Rohit, I visited your portfolio and would like to discuss a project.');
+
+export const testimonials: Testimonial[] = [
+  {
+    id: 'adriaan',
+    quote:
+      'Rohit is a highly skilled senior developer who takes great pride in his work. He is highly experienced in system architecture and can guide complex projects from conception to implementation. His deep understanding of software development, combined with his ability to manage technical teams, ensures that projects are delivered efficiently and with high quality.',
+    name: 'Adriaan',
+    company: 'Entegral Technologies',
+    location: 'South Africa',
+  },
+  {
+    id: 'jasmine',
+    quote:
+      'Rohit was an amazing addition to our team and highly skilled developer. He not only performed his projects with precision and dedication but he also contributed to the overall vision and strategy for our team. As a startup, Rohit is exactly what you need — highly skilled, creative, an excellent team member and truly committed to the success of the product and company.',
+    name: 'Jasmine',
+    company: 'GrantEd Inc.',
+    location: 'USA',
+  },
+  {
+    id: 'luis',
+    quote:
+      "Rohit is a fantastic web developer. He's got good business and soft skills which I admire. He's easy to work with and can articulate complex problems to business stakeholders. Technically he has the skills and capabilities to complete work on time and at the highest quality.",
+    name: 'Luis',
+    company: 'Nuleep Inc.',
+    location: 'USA',
+  },
+  {
+    id: 'mashal',
+    quote:
+      'More than just being competent in his work, which Rohit very much is, I value the ability to be trustworthy, have good team chemistry, and push through when things get tough. Rohit has gone from an employee to a partner and a friend. I value his ideas that contribute immensely to the success of the projects I work on with him.',
+    name: 'Mashal',
+    company: 'Cacawaa',
+    location: 'Kuwait',
+  },
+];
 
 export const services: ServiceArea[] = [
   {

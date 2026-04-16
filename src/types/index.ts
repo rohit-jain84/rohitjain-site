@@ -70,6 +70,14 @@ export interface NavItem {
   href: string;
 }
 
+export interface Testimonial {
+  id: string;
+  quote: string;
+  name: string;
+  company: string;
+  location: string;
+}
+
 export interface ServiceArea {
   id: string;
   title: string;

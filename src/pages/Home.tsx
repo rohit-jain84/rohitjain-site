@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { SEOHead } from '../components/shared/SEOHead';
 import { TechTag } from '../components/shared/TechTag';
-import { hero, projects, services, designPrinciples, WHATSAPP_URL } from '../data/resume';
+import { hero, projects, services, designPrinciples, testimonials, WHATSAPP_URL } from '../data/resume';
 
 export function Home() {
   const featuredProjects = projects.slice(0, 3);
@@ -189,6 +189,46 @@ export function Home() {
           <Link to="/projects" className="inline-flex items-center gap-2 text-sm font-semibold text-brand-primary hover:text-brand-primary-hover transition-colors">
             View all projects &rarr;
           </Link>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="bg-surface-secondary border-y border-border-default">
+        <div className="max-w-6xl mx-auto px-4 md:px-8 py-20 md:py-28">
+          <div className="text-center mb-14">
+            <p className="text-sm font-bold uppercase tracking-widest text-brand-primary mb-2">What Clients Say</p>
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-text-primary">
+              Built on Trust & Results
+            </h2>
+            <p className="text-text-tertiary mt-3 max-w-2xl mx-auto">
+              Feedback from 17 years of building enterprise systems — the same rigor I now bring to AI engineering.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {testimonials.map((t) => (
+              <div
+                key={t.id}
+                className="group relative bg-surface-primary border border-border-default rounded-2xl p-6 md:p-8 hover:border-brand-primary hover:shadow-[var(--shadow-glow)] transition-all duration-250"
+              >
+                <div className="absolute top-0 left-0 right-0 h-0.5 gradient-brand opacity-0 group-hover:opacity-100 transition-opacity duration-250" />
+                <svg className="w-8 h-8 text-brand-primary/20 mb-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10H14.017zM0 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151C7.546 6.068 5.983 8.789 5.983 11H10v10H0z" />
+                </svg>
+                <blockquote className="text-sm md:text-base text-text-secondary leading-relaxed mb-6">
+                  "{t.quote}"
+                </blockquote>
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full gradient-brand flex items-center justify-center text-white font-bold text-sm">
+                    {t.name.charAt(0)}
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-text-primary">{t.name}</p>
+                    <p className="text-xs text-text-muted">{t.company} — {t.location}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

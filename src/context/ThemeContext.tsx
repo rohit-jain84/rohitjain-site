@@ -91,11 +91,26 @@ interface ThemeContextValue {
 
 const ThemeContext = createContext<ThemeContextValue | null>(null);
 
+function updateFavicon(bg: string, fg: string) {
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="${bg}"/><g transform="translate(3,1)"><path d="M5 8h4.2c1.4 0 2.5.4 3.2 1.1.7.7 1 1.7 1 2.8 0 .9-.2 1.7-.7 2.4-.5.6-1.2 1-2.1 1.2l3.2 5.5h-2.8l-2.8-5.1H7.7v5.1H5V8zM7.7 10v3.8h1.4c.7 0 1.3-.2 1.7-.5.4-.4.5-.8.5-1.4s-.2-1-.5-1.3c-.4-.3-.9-.5-1.7-.5H7.7z" fill="${fg}"/><path d="M18 8h2.7v10.5c0 1.2-.3 2.1-.9 2.8-.6.7-1.5 1-2.7 1-1 0-1.8-.2-2.4-.7-.6-.5-1-1.1-1.1-1.9H16c.1.3.2.5.4.6.2.2.5.2.8.2.4 0 .8-.2 1-.5.2-.3.3-.8.3-1.5V8z" fill="${fg}"/></g></svg>`;
+  let link = document.querySelector<HTMLLinkElement>('link[rel="icon"]');
+  if (!link) {
+    link = document.createElement('link');
+    link.rel = 'icon';
+    document.head.appendChild(link);
+  }
+  link.type = 'image/svg+xml';
+  link.href = 'data:image/svg+xml,' + encodeURIComponent(svg);
+}
+
 function applyTheme(theme: ThemeDefinition) {
   const root = document.documentElement;
   const c = theme.colors;
 
   root.classList.toggle('dark', theme.isDark);
+
+  // Update favicon to match theme
+  updateFavicon(c.brandPrimary, theme.isDark ? '#0f1115' : '#ffffff');
 
   root.style.setProperty('--color-brand-primary', c.brandPrimary);
   root.style.setProperty('--color-brand-primary-hover', c.brandPrimaryHover);
