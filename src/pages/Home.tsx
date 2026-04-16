@@ -142,7 +142,7 @@ export function Home() {
             <Link
               key={project.id}
               to={project.caseStudySlug ? `/case-studies/${project.caseStudySlug}` : '/projects'}
-              className="group relative block bg-surface-secondary border border-border-default rounded-2xl overflow-hidden hover:border-brand-primary hover:shadow-[var(--shadow-glow)] hover:-translate-y-1 transition-all duration-250"
+              className="group relative flex flex-col bg-surface-secondary border border-border-default rounded-2xl overflow-hidden hover:border-brand-primary hover:shadow-[var(--shadow-glow)] hover:-translate-y-1 transition-all duration-250"
             >
               <div className="absolute top-0 left-0 right-0 h-0.5 gradient-brand opacity-0 group-hover:opacity-100 transition-opacity duration-250" />
               {/* Hero screenshot */}
@@ -155,7 +155,7 @@ export function Home() {
                   />
                 </div>
               )}
-              <div className="p-6">
+              <div className="p-6 flex-1">
                 {project.caseStudySlug && (
                   <span className="inline-block text-xs font-semibold uppercase tracking-wider text-brand-accent bg-brand-accent-subtle px-2.5 py-0.5 rounded-full mb-3">
                     Case Study
@@ -177,7 +177,7 @@ export function Home() {
                   {project.techStack.length > 5 && <TechTag label={`+${project.techStack.length - 5}`} />}
                 </div>
               </div>
-              <div className="px-6 py-4 border-t border-border-default flex gap-4">
+              <div className="px-6 py-4 border-t border-border-default flex items-center gap-4 mt-auto">
                 <span className="text-sm font-semibold text-brand-primary">
                   Read Case Study &rarr;
                 </span>
