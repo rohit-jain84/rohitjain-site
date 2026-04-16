@@ -46,10 +46,10 @@ export const caseStudies: CaseStudy[] = [
       'How I built a document Q&A platform with hybrid search, reranking, and automated evaluation',
     githubUrl: 'https://github.com/rohit-jain84/multi-tenant-rag-platform',
     screenshots: [
-      { src: '/screenshots/rag-platform/query-playground.png', alt: 'Query playground with citations and latency breakdown' },
-      { src: '/screenshots/rag-platform/health-dashboard.png', alt: 'Health dashboard — PostgreSQL, Qdrant, Redis real-time status' },
-      { src: '/screenshots/rag-platform/tenant-admin-dark.png', alt: 'Tenant provisioning interface (dark mode)' },
-      { src: '/screenshots/rag-platform/tenant-management.png', alt: 'Active tenants with rate limits and status' },
+      { src: '/screenshots/rag-platform/light/tenants.png', alt: 'Tenant management — 3 tenants with rate limits and green status' },
+      { src: '/screenshots/rag-platform/health-dashboard.png', alt: 'Health dashboard — PostgreSQL, Qdrant, Redis all operational with latency' },
+      { src: '/screenshots/rag-platform/light/evaluation.png', alt: 'RAGAS evaluation — Context Recall, Faithfulness, Answer Relevancy, Context Precision' },
+      { src: '/screenshots/rag-platform/tenant-management.png', alt: 'Active tenants with rate limits and status (dark mode)' },
     ],
     scenarios: [
       { title: 'HR Policy Search', description: 'HR uploads 200 policy documents. Employee asks "What is the parental leave policy for employees in India?" and gets a cited answer with page numbers in under 2 seconds.' },
@@ -421,6 +421,11 @@ def is_write_tool(tool_name: str) -> bool:
     subtitle:
       'Multi-stage ML pipeline turning unstructured enterprise documents into searchable, classified, entity-rich intelligence',
     githubUrl: 'https://github.com/rohit-jain84/enterprise-document-intelligence-platform',
+    screenshots: [
+      { src: '/screenshots/document-intelligence/light/entities.png', alt: 'Entity dashboard — 48 NER entities with pie charts and type distribution' },
+      { src: '/screenshots/document-intelligence/light/dashboard.png', alt: 'Dashboard — 12 documents, 3 collections, recent documents table' },
+      { src: '/screenshots/document-intelligence/light/collections.png', alt: 'Collections — Finance, Legal, HR with 4 documents each' },
+    ],
     scenarios: [
       { title: 'Legal Contract Search', description: 'Upload 500 vendor contracts (mix of native PDFs and scans). System OCRs everything, extracts company names, dates, amounts, and enables search like "Find contracts with auto-renewal clauses expiring before Q3."' },
       { title: 'Finance Invoice Processing', description: 'Scanned invoices are OCRd, amounts and dates extracted and normalized, classified as "invoice," and indexed for range queries ("invoices over $10,000 from last quarter").' },
