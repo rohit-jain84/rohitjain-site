@@ -12,12 +12,6 @@ function resolveHero(hero: string | { light: string; dark: string } | undefined,
   return siteIsDark ? hero.dark : hero.light;
 }
 
-/** Resolve a screenshot entry to a URL. */
-function resolveScreenshot(ss: { src?: string; light?: string; dark?: string }, siteIsDark: boolean): string {
-  if ('src' in ss && ss.src) return ss.src;
-  return siteIsDark ? (ss.dark ?? '') : (ss.light ?? '');
-}
-
 export function Projects() {
   const { theme } = useTheme();
   const siteIsDark = theme.isDark;
