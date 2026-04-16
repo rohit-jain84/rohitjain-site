@@ -178,6 +178,7 @@ export function CaseStudyDetail() {
                     src={resolveScreenshot(s, siteIsDark)}
                     alt={s.alt}
                     caption={s.alt}
+                    className="aspect-video"
                   />
                 </div>
               ))}

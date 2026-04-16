@@ -47,9 +47,7 @@ export const caseStudies: CaseStudy[] = [
     githubUrl: 'https://github.com/rohit-jain84/multi-tenant-rag-platform',
     screenshots: [
       { light: '/screenshots/rag-platform/dark/tenants.png', dark: '/screenshots/rag-platform/light/tenants.png', alt: 'Tenant management — 3 tenants with rate limits and green status' },
-      { src: '/screenshots/rag-platform/health-dashboard.png', alt: 'Health dashboard — PostgreSQL, Qdrant, Redis all operational with latency' },
       { light: '/screenshots/rag-platform/dark/evaluation.png', dark: '/screenshots/rag-platform/light/evaluation.png', alt: 'RAGAS evaluation — Context Recall, Faithfulness, Answer Relevancy, Context Precision' },
-      { src: '/screenshots/rag-platform/tenant-management.png', alt: 'Active tenants with rate limits and status (dark mode)' },
     ],
     scenarios: [
       { title: 'HR Policy Search', description: 'HR uploads 200 policy documents. Employee asks "What is the parental leave policy for employees in India?" and gets a cited answer with page numbers in under 2 seconds.' },
