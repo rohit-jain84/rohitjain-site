@@ -58,3 +58,13 @@ plan*.html
 
 # Backups
 backup/
+
+# Legacy/stale directories removed from tracking
+portfolio/
+photo/
+screenshots/
+.gitmodules
+.github/
+
+# Binary files
+resume/Rohit Jain Resume.pdf
