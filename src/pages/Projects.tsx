@@ -53,7 +53,7 @@ export function Projects() {
               <CardWrapper
                 key={project.id}
                 {...cardProps as any}
-                className="group relative block bg-surface-secondary border border-border-default rounded-2xl overflow-hidden hover:border-brand-primary hover:shadow-[var(--shadow-glow)] hover:-translate-y-1 transition-all duration-250"
+                className="group relative flex flex-col bg-surface-secondary border border-border-default rounded-2xl overflow-hidden hover:border-brand-primary hover:shadow-[var(--shadow-glow)] hover:-translate-y-1 transition-all duration-250"
               >
                 <div className="absolute top-0 left-0 right-0 h-0.5 gradient-brand opacity-0 group-hover:opacity-100 transition-opacity duration-250" />
                 {/* Hero screenshot */}
@@ -66,7 +66,7 @@ export function Projects() {
                     />
                   </div>
                 )}
-                <div className="p-6">
+                <div className="p-6 flex-1">
                   <div className="flex items-start justify-between mb-3">
                     <h2 className="text-lg font-bold text-text-primary group-hover:text-brand-primary transition-colors pr-4">{project.title}</h2>
                     {project.caseStudySlug && (
@@ -99,7 +99,7 @@ export function Projects() {
                     ))}
                   </div>
                 </div>
-                <div className="px-6 py-4 border-t border-border-default flex gap-4">
+                <div className="px-6 py-4 border-t border-border-default flex items-center gap-4 mt-auto">
                   {project.caseStudySlug && (
                     <span className="text-sm font-semibold text-brand-primary">
                       Read Case Study &rarr;
