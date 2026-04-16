@@ -83,23 +83,20 @@ export function Home() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {designPrinciples.map((p) => {
             const linkedProject = projects.find((proj) => proj.id === p.projectId);
+            const href = linkedProject?.caseStudySlug ? `/case-studies/${linkedProject.caseStudySlug}` : '/projects';
             return (
-              <div
+              <Link
                 key={p.id}
-                className="group relative bg-surface-secondary border border-border-default rounded-2xl p-5 hover:border-brand-primary hover:shadow-[var(--shadow-glow)] hover:-translate-y-0.5 transition-all duration-250 overflow-hidden"
+                to={href}
+                className="group relative block bg-surface-secondary border border-border-default rounded-2xl p-5 hover:border-brand-primary hover:shadow-[var(--shadow-glow)] hover:-translate-y-0.5 transition-all duration-250 overflow-hidden"
               >
                 <div className="absolute top-0 left-0 right-0 h-0.5 gradient-brand opacity-0 group-hover:opacity-100 transition-opacity duration-250" />
-                <h3 className="text-sm font-bold text-text-primary mb-1.5">{p.title}</h3>
+                <h3 className="text-sm font-bold text-text-primary group-hover:text-brand-primary transition-colors mb-1.5">{p.title}</h3>
                 <p className="text-xs text-text-tertiary leading-relaxed mb-3">{p.description}</p>
-                {linkedProject && (
-                  <Link
-                    to={linkedProject.caseStudySlug ? `/case-studies/${linkedProject.caseStudySlug}` : '/projects'}
-                    className="text-xs font-semibold text-brand-primary hover:text-brand-primary-hover transition-colors"
-                  >
-                    See in action &rarr;
-                  </Link>
-                )}
-              </div>
+                <span className="text-xs font-semibold text-brand-primary">
+                  See in action &rarr;
+                </span>
+              </Link>
             );
           })}
         </div>
@@ -142,9 +139,10 @@ export function Home() {
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {featuredProjects.map((project) => (
-            <div
+            <Link
               key={project.id}
-              className="group relative bg-surface-secondary border border-border-default rounded-2xl overflow-hidden hover:border-brand-primary hover:shadow-[var(--shadow-glow)] hover:-translate-y-1 transition-all duration-250"
+              to={project.caseStudySlug ? `/case-studies/${project.caseStudySlug}` : '/projects'}
+              className="group relative block bg-surface-secondary border border-border-default rounded-2xl overflow-hidden hover:border-brand-primary hover:shadow-[var(--shadow-glow)] hover:-translate-y-1 transition-all duration-250"
             >
               <div className="absolute top-0 left-0 right-0 h-0.5 gradient-brand opacity-0 group-hover:opacity-100 transition-opacity duration-250" />
               {/* Hero screenshot */}
@@ -163,7 +161,7 @@ export function Home() {
                     Case Study
                   </span>
                 )}
-                <h3 className="text-lg font-bold text-text-primary mb-2">{project.title}</h3>
+                <h3 className="text-lg font-bold text-text-primary group-hover:text-brand-primary transition-colors mb-2">{project.title}</h3>
                 {project.scenario && (
                   <p className="text-xs text-text-muted leading-relaxed mb-3 italic">"{project.scenario}"</p>
                 )}
@@ -180,18 +178,25 @@ export function Home() {
                 </div>
               </div>
               <div className="px-6 py-4 border-t border-border-default flex gap-4">
-                {project.caseStudySlug && (
-                  <Link to={`/case-studies/${project.caseStudySlug}`} className="text-sm font-semibold text-brand-primary hover:text-brand-primary-hover transition-colors">
-                    Read Case Study &rarr;
-                  </Link>
-                )}
+                <span className="text-sm font-semibold text-brand-primary">
+                  Read Case Study &rarr;
+                </span>
                 {project.githubUrl && (
-                  <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-text-muted hover:text-text-primary transition-colors">
+                  <span
+                    className="text-sm font-semibold text-text-muted hover:text-text-primary transition-colors"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      window.open(project.githubUrl, '_blank', 'noopener,noreferrer');
+                    }}
+                    role="link"
+                    tabIndex={0}
+                  >
                     GitHub &#x2197;
-                  </a>
+                  </span>
                 )}
               </div>
-            </div>
+            </Link>
           ))}
         </div>
         <div className="text-center mt-10">
