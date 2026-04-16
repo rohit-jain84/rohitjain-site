@@ -2,8 +2,14 @@ import { useParams, Link } from 'react-router-dom';
 import { SEOHead } from '../components/shared/SEOHead';
 import { TechTag } from '../components/shared/TechTag';
 import { ImageLightbox } from '../components/shared/ImageLightbox';
+import { useTheme } from '../context/ThemeContext';
 import { caseStudies } from '../data/caseStudies';
 import type { CaseStudySection } from '../data/caseStudies';
+
+function resolveScreenshot(ss: { src?: string; light?: string; dark?: string }, siteIsDark: boolean): string {
+  if ('src' in ss && ss.src) return ss.src;
+  return siteIsDark ? (ss.dark ?? '') : (ss.light ?? '');
+}
 
 function RenderSection({ section }: { section: CaseStudySection }) {
   switch (section.type) {
@@ -95,6 +101,8 @@ function RenderSection({ section }: { section: CaseStudySection }) {
 
 export function CaseStudyDetail() {
   const { slug } = useParams<{ slug: string }>();
+  const { theme } = useTheme();
+  const siteIsDark = theme.isDark;
   const study = caseStudies.find((cs) => cs.slug === slug);
 
   if (!study) {
@@ -167,7 +175,7 @@ export function CaseStudyDetail() {
               {study.screenshots.map((s, i) => (
                 <div key={i} className="relative bg-surface-secondary border border-border-default rounded-xl overflow-hidden hover:border-brand-primary hover:shadow-[var(--shadow-glow)] transition-all duration-200">
                   <ImageLightbox
-                    src={s.src}
+                    src={resolveScreenshot(s, siteIsDark)}
                     alt={s.alt}
                     caption={s.alt}
                   />

@@ -1,9 +1,18 @@
 import { Link } from 'react-router-dom';
 import { SEOHead } from '../components/shared/SEOHead';
 import { TechTag } from '../components/shared/TechTag';
+import { useTheme } from '../context/ThemeContext';
 import { caseStudies } from '../data/caseStudies';
 
+function resolveScreenshot(ss: { src?: string; light?: string; dark?: string }, siteIsDark: boolean): string {
+  if ('src' in ss && ss.src) return ss.src;
+  return siteIsDark ? (ss.dark ?? '') : (ss.light ?? '');
+}
+
 export function CaseStudies() {
+  const { theme } = useTheme();
+  const siteIsDark = theme.isDark;
+
   return (
     <>
       <SEOHead
@@ -32,7 +41,7 @@ export function CaseStudies() {
               {/* Hero screenshot if available */}
               {study.screenshots && study.screenshots.length > 0 && (
                 <div className="w-full aspect-[3/1] overflow-hidden rounded-lg bg-surface-tertiary mb-4 border border-border-default">
-                  <img src={study.screenshots[0].src} alt={study.screenshots[0].alt} className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" />
+                  <img src={resolveScreenshot(study.screenshots[0], siteIsDark)} alt={study.screenshots[0].alt} className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" />
                 </div>
               )}
               <div className="flex items-start justify-between gap-4 mb-3">

@@ -24,7 +24,7 @@ export interface CaseStudy {
   role: string;
   duration: string;
   githubUrl: string;
-  screenshots?: { src: string; alt: string }[];
+  screenshots?: ({ src: string; alt: string } | { light: string; dark: string; alt: string })[];
   scenarios?: { title: string; description: string }[];
   techStack: { layer: string; tech: string; purpose: string }[];
   problem: string[];
@@ -46,9 +46,9 @@ export const caseStudies: CaseStudy[] = [
       'How I built a document Q&A platform with hybrid search, reranking, and automated evaluation',
     githubUrl: 'https://github.com/rohit-jain84/multi-tenant-rag-platform',
     screenshots: [
-      { src: '/screenshots/rag-platform/light/tenants.png', alt: 'Tenant management — 3 tenants with rate limits and green status' },
+      { light: '/screenshots/rag-platform/dark/tenants.png', dark: '/screenshots/rag-platform/light/tenants.png', alt: 'Tenant management — 3 tenants with rate limits and green status' },
       { src: '/screenshots/rag-platform/health-dashboard.png', alt: 'Health dashboard — PostgreSQL, Qdrant, Redis all operational with latency' },
-      { src: '/screenshots/rag-platform/light/evaluation.png', alt: 'RAGAS evaluation — Context Recall, Faithfulness, Answer Relevancy, Context Precision' },
+      { light: '/screenshots/rag-platform/dark/evaluation.png', dark: '/screenshots/rag-platform/light/evaluation.png', alt: 'RAGAS evaluation — Context Recall, Faithfulness, Answer Relevancy, Context Precision' },
       { src: '/screenshots/rag-platform/tenant-management.png', alt: 'Active tenants with rate limits and status (dark mode)' },
     ],
     scenarios: [
@@ -422,9 +422,9 @@ def is_write_tool(tool_name: str) -> bool:
       'Multi-stage ML pipeline turning unstructured enterprise documents into searchable, classified, entity-rich intelligence',
     githubUrl: 'https://github.com/rohit-jain84/enterprise-document-intelligence-platform',
     screenshots: [
-      { src: '/screenshots/document-intelligence/light/entities.png', alt: 'Entity dashboard — 48 NER entities with pie charts and type distribution' },
-      { src: '/screenshots/document-intelligence/light/dashboard.png', alt: 'Dashboard — 12 documents, 3 collections, recent documents table' },
-      { src: '/screenshots/document-intelligence/light/collections.png', alt: 'Collections — Finance, Legal, HR with 4 documents each' },
+      { light: '/screenshots/document-intelligence/dark/entities.png', dark: '/screenshots/document-intelligence/light/entities.png', alt: 'Entity dashboard — 48 NER entities with pie charts and type distribution' },
+      { light: '/screenshots/document-intelligence/dark/dashboard.png', dark: '/screenshots/document-intelligence/light/dashboard.png', alt: 'Dashboard — 12 documents, 3 collections, recent documents table' },
+      { light: '/screenshots/document-intelligence/dark/collections.png', dark: '/screenshots/document-intelligence/light/collections.png', alt: 'Collections — Finance, Legal, HR with 4 documents each' },
     ],
     scenarios: [
       { title: 'Legal Contract Search', description: 'Upload 500 vendor contracts (mix of native PDFs and scans). System OCRs everything, extracts company names, dates, amounts, and enables search like "Find contracts with auto-renewal clauses expiring before Q3."' },
