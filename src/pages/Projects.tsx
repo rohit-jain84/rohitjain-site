@@ -1,9 +1,27 @@
 import { Link } from 'react-router-dom';
 import { SEOHead } from '../components/shared/SEOHead';
 import { TechTag } from '../components/shared/TechTag';
+import { useTheme } from '../context/ThemeContext';
 import { projects } from '../data/resume';
 
+/** Resolve a hero screenshot value to a URL based on the current theme.
+ *  Rule: light site → dark app screenshot (contrast), dark site → light app screenshot. */
+function resolveHero(hero: string | { light: string; dark: string } | undefined, siteIsDark: boolean): string | undefined {
+  if (!hero) return undefined;
+  if (typeof hero === 'string') return hero;
+  return siteIsDark ? hero.dark : hero.light;
+}
+
+/** Resolve a screenshot entry to a URL. */
+function resolveScreenshot(ss: { src?: string; light?: string; dark?: string }, siteIsDark: boolean): string {
+  if ('src' in ss && ss.src) return ss.src;
+  return siteIsDark ? (ss.dark ?? '') : (ss.light ?? '');
+}
+
 export function Projects() {
+  const { theme } = useTheme();
+  const siteIsDark = theme.isDark;
+
   return (
     <>
       <SEOHead
@@ -32,7 +50,7 @@ export function Projects() {
               {project.heroScreenshot && (
                 <div className="w-full aspect-video overflow-hidden bg-surface-tertiary">
                   <img
-                    src={project.heroScreenshot}
+                    src={resolveHero(project.heroScreenshot, siteIsDark)}
                     alt={project.title}
                     className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                   />

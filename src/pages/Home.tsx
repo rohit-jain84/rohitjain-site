@@ -1,9 +1,18 @@
 import { Link } from 'react-router-dom';
 import { SEOHead } from '../components/shared/SEOHead';
 import { TechTag } from '../components/shared/TechTag';
+import { useTheme } from '../context/ThemeContext';
 import { hero, projects, services, designPrinciples, testimonials, WHATSAPP_URL } from '../data/resume';
 
+function resolveHero(hero: string | { light: string; dark: string } | undefined, siteIsDark: boolean): string | undefined {
+  if (!hero) return undefined;
+  if (typeof hero === 'string') return hero;
+  return siteIsDark ? hero.dark : hero.light;
+}
+
 export function Home() {
+  const { theme } = useTheme();
+  const siteIsDark = theme.isDark;
   const featuredProjects = projects.slice(0, 3);
 
   return (
@@ -142,7 +151,7 @@ export function Home() {
               {project.heroScreenshot && (
                 <div className="w-full aspect-video overflow-hidden bg-surface-tertiary">
                   <img
-                    src={project.heroScreenshot}
+                    src={resolveHero(project.heroScreenshot, siteIsDark)}
                     alt={project.title}
                     className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                   />

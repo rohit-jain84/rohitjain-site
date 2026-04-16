@@ -19,8 +19,8 @@ export interface Project {
   caseStudySlug?: string;
   category: 'rag' | 'agents' | 'document-ai' | 'llmops' | 'code-review' | 'enterprise';
   highlights: string[];
-  heroScreenshot?: string;
-  screenshots?: { src: string; alt: string }[];
+  heroScreenshot?: string | { light: string; dark: string };
+  screenshots?: ({ src: string; alt: string } | { light: string; dark: string; alt: string })[];
   scenario?: string;
   architectureOneLiner?: string;
 }
