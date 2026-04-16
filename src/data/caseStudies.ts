@@ -211,10 +211,9 @@ for rank, chunk in enumerate(sparse_results, start=1):
       'LangGraph-based agent orchestrating 26 tools across three MCP servers, with multi-model cost optimization, parallel execution, and layered safety controls',
     githubUrl: 'https://github.com/rohit-jain84/enterprise-mcp-agent-system',
     screenshots: [
-      { src: '/screenshots/mcp-agent/02-chat.png', alt: 'Multi-tool orchestration with rich responses' },
-      { src: '/screenshots/mcp-agent/03-approvals.png', alt: 'Human-in-the-loop approval queue' },
-      { src: '/screenshots/mcp-agent/04-history.png', alt: 'Session management and search' },
-      { src: '/screenshots/mcp-agent/05-settings.png', alt: 'MCP server health dashboard' },
+      { light: '/screenshots/mcp-agent/dark/chat.png', dark: '/screenshots/mcp-agent/light/chat.png', alt: 'Multi-tool orchestration with tool calls and ticket table' },
+      { light: '/screenshots/mcp-agent/dark/approvals.png', dark: '/screenshots/mcp-agent/light/approvals.png', alt: 'Human-in-the-loop approval queue with pending requests' },
+      { light: '/screenshots/mcp-agent/dark/history.png', dark: '/screenshots/mcp-agent/light/history.png', alt: 'Session history with 4 agent conversations' },
     ],
     scenarios: [
       { title: 'PM Morning Briefing', description: '"What happened over the weekend?" — agent pulls PRs merged, tickets closed, sprint velocity, and upcoming meetings into one consolidated summary.' },
