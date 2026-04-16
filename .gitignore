@@ -47,5 +47,14 @@ temp/
 # Claude
 .claude/
 
+# LinkedIn backup (personal data)
+linkedin-backup/
+
 # Planning docs (not for commit)
 plan*.html
+
+# Playwright MCP
+.playwright-mcp/
+
+# Backups
+backup/
