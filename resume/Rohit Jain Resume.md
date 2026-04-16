@@ -52,7 +52,7 @@ AI engineer with 17 years of enterprise backend experience. I build production-g
 Building production AI systems with measurable results. Focus: RAG, agents, document intelligence, LLMOps.
 
 ### CTO & Principal Architect — Investello | Jul 2016 – Oct 2025
-Architected a value-investing SaaS platform (50,000+ users, ₹10 Lakh ARR). Distributed data platform processing 500K+ records with 99.9% freshness. AI-powered earnings analyzer using Azure OpenAI + Semantic Kernel.
+Architected a value-investing SaaS platform (100,000+ users, ₹10 Lakh ARR). Distributed data platform processing 500K+ records with 99.9% freshness. AI-powered earnings analyzer using Azure OpenAI + Semantic Kernel.
 
 ### Senior Tech Lead — Entegral | Mar 2022 – Dec 2024
 Led v1→v2 platform modernization on AWS. Redesigned Redis and DynamoDB access patterns, materially improving p95/p99 latencies. Prototyped AVM using XGBoost.
