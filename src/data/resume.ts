@@ -7,116 +7,233 @@ import type {
   EducationData,
   ContactData,
   NavItem,
+  ServiceArea,
+  DesignPrinciple,
 } from '../types';
 
 export const navigation: NavItem[] = [
-  { label: 'Projects', href: '#projects' },
-  { label: 'Experience', href: '#experience' },
-  { label: 'Skills', href: '#skills' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Projects', href: '/projects' },
+  { label: 'Case Studies', href: '/case-studies' },
+  { label: 'Blog', href: '/blog' },
+  { label: 'Services', href: '/services' },
+  { label: 'About', href: '/about' },
+  { label: 'Contact', href: '/contact' },
 ];
 
 export const hero: HeroData = {
   name: 'Rohit Jain',
-  title: 'Engineering Leader & Architect — Distributed Systems, .NET',
+  title: 'AI Engineer — Production RAG, Intelligent Agents, Document Intelligence. Enterprise system design principles in every layer.',
   photoUrl: '/photo/Rohit Jain.jpg',
   headline:
-    '17 years building scalable, distributed SaaS platforms across FinTech, E-Commerce, and Enterprise domains.',
+    '5 open-source projects with Docker orchestration, evaluation frameworks, and measurable results. 17 years of enterprise architecture as the backbone.',
+  availableForWork: true,
 };
 
 export const summary: SummaryData = {
   paragraphs: [
-    'Engineering leader and architect with 17 years of experience delivering highly scalable, distributed SaaS platforms across FinTech, E-Commerce, and Enterprise domains.',
-    'Expertise in modernizing complex, high-throughput systems using .NET 8, C#, cloud-native patterns, and applied AI/ML on Azure and AWS, with a focus on improving performance, security, and reliability through SRE and DevOps principles.',
-    'Proven ability to drive company-wide technical strategy, set architectural standards, mentor engineers at all levels, and partner across teams to align execution with business outcomes.',
+    'I architect production AI systems where multi-tenancy, fault tolerance, observability, and cost optimization aren\'t afterthoughts — they\'re structural decisions made on day one.',
+    '5 open-source projects. Each with Docker Compose orchestration, comprehensive documentation, CI/CD pipelines, and evaluation frameworks that prove they work.',
+    '17 years of enterprise backend (C#/.NET, Azure, AWS) gave me the instincts. Python, FastAPI, LangGraph, and vector databases gave me the toolkit. Currently open to freelance engagements — I prefer long-term hourly contracts where I can deeply understand the problem.',
   ],
 };
 
 export const projects: Project[] = [
   {
-    id: 'platform-modernization',
-    title: 'Platform Modernization & Performance Optimization',
-    context:
-      'Inherited a latency-plagued v1 platform with Redis misuse (scatter/gather, client-side joins) and DynamoDB anti-patterns (normalized multi-table reads, N-way joins in code).',
-    approach:
-      'Set technical vision and roadmap tied to SLOs. Redesigned Redis cache keys, data shapes, and TTL policies. Shifted DynamoDB from normalized tables to access-pattern-first single-table modeling with GSIs/LSIs.',
-    outcome:
-      'Materially improved p95/p99 latencies and system stability. Eliminated in-code joins and simplified hot paths. Protected feature velocity while de-risking delivery.',
-    architecturalInsight:
-      'Chose single-table DynamoDB over Aurora/Postgres — trading query flexibility for predictable latency at scale. Access patterns were well-defined; relational joins were not needed.',
-    techStack: ['C#', '.NET 6', 'AWS Lambda', 'DynamoDB', 'Redis', 'CloudWatch'],
-    source: 'Entegral (2022–2024)',
+    id: 'multi-tenant-rag',
+    title: 'Multi-Tenant RAG Platform',
+    description:
+      'Production document Q&A where organizations upload documents and employees ask natural-language questions. Every answer cites specific source passages with page numbers. Tenant data is fully isolated with separate vector collections, BM25 indices, and rate limits.',
+    techStack: ['Python', 'FastAPI', 'Qdrant', 'PostgreSQL', 'Redis', 'React', 'Docker'],
+    githubUrl: 'https://github.com/rohit-jain84/multi-tenant-rag-platform',
+    caseStudySlug: 'rag-platform',
+    category: 'rag',
+    highlights: [
+      '0.91 faithfulness (RAGAS)',
+      '+12% hybrid vs dense-only',
+      '1.8s P95 latency',
+    ],
+    heroScreenshot: '/screenshots/rag-platform/query-playground.png',
+    screenshots: [
+      { src: '/screenshots/rag-platform/query-playground.png', alt: 'Query playground with citations and latency breakdown' },
+      { src: '/screenshots/rag-platform/health-dashboard.png', alt: 'Health dashboard — PostgreSQL, Qdrant, Redis status' },
+      { src: '/screenshots/rag-platform/tenant-admin-dark.png', alt: 'Tenant provisioning (dark mode)' },
+      { src: '/screenshots/rag-platform/tenant-management.png', alt: 'Tenant management — rate limits, status' },
+    ],
+    scenario: 'HR team uploads 200 policy documents. An employee asks "What is the parental leave policy for employees in India?" and gets a cited answer with page numbers in under 2 seconds.',
+    architectureOneLiner: 'FastAPI → Qdrant (dense) + Redis (BM25) → RRF fusion → Cohere reranking → LLM generation with SSE streaming',
   },
   {
-    id: 'investello-data-platform',
-    title: 'Distributed Data Platform for Value Investing',
-    context:
-      'Needed to scale a manual 100-stock data pilot into automated daily/quarterly/annual loads processing 500K+ records from multiple provider APIs.',
-    approach:
-      'Designed scheduled ingestion pipelines with idempotent background workers and resilient APIs. Implemented scheduling, retries, and integrity checks.',
-    outcome:
-      '99.9% data freshness. Scaled to 50,000+ registered users and ₹10 Lakh ARR with automated valuation engines and high-performance stock screeners.',
-    architecturalInsight:
-      'Built for idempotency from day one — every pipeline step can be safely retried. This eliminated manual intervention and enabled aggressive retry policies without data corruption.',
-    techStack: ['C#', 'ASP.NET Core', 'Azure App Services', 'Azure SQL', 'Azure Blob Storage'],
-    source: 'Investello (2016–2025)',
+    id: 'mcp-agent-system',
+    title: 'Enterprise AI Agents with MCP',
+    description:
+      'One AI assistant to replace the 47 browser tabs every project manager has open. Connects to GitHub, Jira, and Calendar through the Model Context Protocol — planning and executing multi-step workflows with human-in-the-loop approval for write operations.',
+    techStack: ['LangGraph', 'Claude', 'FastMCP', 'FastAPI', 'React', 'PostgreSQL', 'Redis'],
+    githubUrl: 'https://github.com/rohit-jain84/enterprise-mcp-agent-system',
+    caseStudySlug: 'mcp-agent',
+    category: 'agents',
+    highlights: [
+      '$0.04 per conversation',
+      '82% task completion',
+      '95% guardrail block rate',
+    ],
+    heroScreenshot: '/screenshots/mcp-agent/02-chat.png',
+    screenshots: [
+      { src: '/screenshots/mcp-agent/02-chat.png', alt: 'Multi-tool orchestration with rich responses' },
+      { src: '/screenshots/mcp-agent/03-approvals.png', alt: 'Human-in-the-loop approval queue' },
+      { src: '/screenshots/mcp-agent/04-history.png', alt: 'Session management and search' },
+      { src: '/screenshots/mcp-agent/05-settings.png', alt: 'MCP server health dashboard' },
+    ],
+    scenario: 'PM asks "Why is the payment feature delayed?" — agent connects failing CI → PR that caused it → linked ticket → engineer who was out sick. Cross-tool reasoning in one query.',
+    architectureOneLiner: 'LangGraph StateGraph (9 nodes) → 3 MCP servers (26 tools) → Haiku routing / Sonnet reasoning → PostgreSQL checkpointing',
   },
   {
-    id: 'ai-earnings-analyzer',
-    title: 'AI-Powered Earnings Report Analyzer',
-    context:
-      'Users needed qualitative context beyond raw quantitative data — earnings call PDFs contain valuable insights but are long and dense.',
-    approach:
-      'Built a pipeline using Azure Blob Storage for document ingestion, Azure Functions for processing, and Semantic Kernel to parse long-form earnings PDFs into structured summaries, sentiment, and key metrics.',
-    outcome:
-      'Provided users with digestible earnings insights, reducing manual analysis time. Demonstrated applied AI/ML in a real product feature.',
-    architecturalInsight:
-      'Used Semantic Kernel over raw OpenAI calls — the orchestration layer simplified prompt chaining and made the system easier to test and extend.',
-    techStack: ['C#', 'Azure Functions', 'Azure Blob Storage', 'Azure OpenAI', 'Semantic Kernel'],
-    source: 'Investello (2016–2025)',
+    id: 'document-intelligence',
+    title: 'Document Intelligence Platform',
+    description:
+      'Multi-stage ML pipeline that processes enterprise documents end-to-end: extracts text from any format (including scanned images), recognizes and normalizes entities, classifies by type using a trainable model, and indexes into a hybrid search engine with RAG-powered Q&A.',
+    techStack: ['Python', 'FastAPI', 'Elasticsearch', 'PostgreSQL', 'Redis', 'MinIO', 'Celery', 'React'],
+    githubUrl: 'https://github.com/rohit-jain84/enterprise-document-intelligence-platform',
+    caseStudySlug: 'document-intelligence',
+    category: 'document-ai',
+    highlights: [
+      '0.91 classification F1',
+      '+22% nDCG@10 hybrid search',
+      '12 docs/min throughput',
+    ],
+    scenario: 'Legal team uploads 500 contracts. System OCRs scanned documents, extracts company names, dates, and monetary amounts, classifies each as "contract," and enables search like "Find vendor contracts with auto-renewal clauses expiring before Q3."',
+    architectureOneLiner: 'Celery pipeline: Upload → Tika/pdfplumber/Tesseract → TF-IDF+SVM classification → spaCy NER → Elasticsearch (BM25 + kNN)',
   },
   {
-    id: 'automated-valuation-model',
-    title: 'Automated Valuation Model (AVM) Prototype',
-    context:
-      'Championed a data-driven initiative to predict property market values — proving feasibility of a new revenue stream.',
-    approach:
-      'Built a regression model prototype using XGBoost on property feature data (size, location, comparable sales) to predict market values.',
-    outcome:
-      'Proved technical feasibility of AVM as a product feature. Demonstrated ability to bridge engineering and product thinking.',
-    architecturalInsight:
-      'Started with XGBoost for interpretability and fast iteration over deep learning — stakeholders needed to understand why a property was valued at X, not just that it was.',
-    techStack: ['Python', 'XGBoost', 'AWS'],
-    source: 'Entegral (2022–2024)',
+    id: 'llmops-platform',
+    title: 'LLMOps Platform',
+    description:
+      'DevOps for LLM applications. Version and A/B test prompts, run automated and human evaluations, route queries to the cheapest capable model, trace every LLM call, and deploy safely through eval-gated CI/CD pipelines with canary rollouts.',
+    techStack: ['Python', 'FastAPI', 'PostgreSQL', 'Redis', 'Qdrant', 'LangFuse', 'OpenTelemetry', 'Grafana', 'Docker'],
+    githubUrl: 'https://github.com/rohit-jain84/llmops-platform',
+    category: 'llmops',
+    highlights: [
+      'Eval-gated CI/CD',
+      'A/B testing with t-test',
+      'Canary rollouts',
+    ],
+    heroScreenshot: '/screenshots/llmops/dashboard.png',
+    screenshots: [
+      { src: '/screenshots/llmops/dashboard.png', alt: 'Platform dashboard' },
+      { src: '/screenshots/llmops/cost-analytics.png', alt: 'Cost analytics by model and time' },
+      { src: '/screenshots/llmops/experiments.png', alt: 'A/B testing experiments' },
+      { src: '/screenshots/llmops/evaluations.png', alt: 'Evaluation runs and metrics' },
+      { src: '/screenshots/llmops/deployments.png', alt: 'Canary deployment pipeline' },
+    ],
+    scenario: 'Support bot prompt change drops factuality by 5%. The eval-gated pipeline catches the regression before it reaches production. Team iterates on the prompt with A/B testing until quality exceeds the previous version.',
+    architectureOneLiner: 'FastAPI gateway → litellm (100+ providers) → Qdrant semantic cache → LangFuse + OTel tracing → Grafana dashboards',
+  },
+  {
+    id: 'code-review-ai',
+    title: 'AI Code Review Assistant',
+    description:
+      'AI-powered code review tool that analyzes code snippets using LLMs and returns structured findings with severity levels, categories, line numbers, and actionable fix suggestions. Supports 11 programming languages with multi-LLM backend.',
+    techStack: ['Python', 'FastAPI', 'Claude API', 'OpenAI API', 'JavaScript', 'CodeMirror', 'Docker'],
+    githubUrl: 'https://github.com/rohit-jain84/code-review-ai-assistant',
+    category: 'code-review',
+    highlights: [
+      '11 languages supported',
+      'Structured findings',
+      'Multi-LLM support',
+    ],
+    scenario: 'Developer pastes a Python function. AI identifies a SQL injection vulnerability (critical), suggests parameterized queries, and flags a missing type annotation (info) — all in structured, parseable output.',
+    architectureOneLiner: 'CodeMirror editor → FastAPI (rate-limited) → Claude/GPT → Structured JSON findings with severity + fix suggestions',
+  },
+  {
+    id: 'investello',
+    title: 'Investello — Value Investing SaaS',
+    description:
+      'Value-investing platform serving 100,000+ users with automated valuation engines, stock screeners, and AI-powered earnings analysis — processing 1M+ data points monthly across 5,000 publicly listed companies.',
+    techStack: ['C#', 'ASP.NET Core', 'Azure SQL', 'Azure OpenAI', 'Semantic Kernel', 'Azure Functions'],
+    category: 'enterprise',
+    highlights: [
+      '100,000+ users',
+      '1M+ data points/month',
+      '5,000 companies tracked',
+    ],
+    scenario: 'Retail investor screens 5,000+ stocks using automated valuation metrics, then reads an AI-generated earnings summary instead of parsing a 40-page PDF.',
+    architectureOneLiner: 'ASP.NET Core → Azure SQL + Blob Storage → Scheduled pipelines (500K+ records) → Azure OpenAI earnings analyzer',
+  },
+];
+
+export const designPrinciples: DesignPrinciple[] = [
+  {
+    id: 'multi-tenancy',
+    title: 'Multi-Tenancy by Design',
+    description: 'Physical isolation at every data layer — not metadata filtering that one bug can bypass.',
+    evidence: 'RAG Platform: per-tenant Qdrant collections, separate BM25 indices, Argon2 API keys. Doc Intel: collection-level RBAC.',
+    projectId: 'multi-tenant-rag',
+  },
+  {
+    id: 'graceful-degradation',
+    title: 'Graceful Degradation',
+    description: 'Layered fallbacks so the system never hard-fails — it degrades to the next-best option.',
+    evidence: 'RAG: Cohere → CrossEncoder fallback. Doc Intel: Tika → pdfplumber → Tesseract tiered OCR. MCP Agent: per-step error recovery.',
+    projectId: 'document-intelligence',
+  },
+  {
+    id: 'eval-driven',
+    title: 'Evaluation-Driven Development',
+    description: 'Every change is measured against an eval set — no tuning by vibes.',
+    evidence: 'RAG: 56-question RAGAS eval set. MCP Agent: 30-task eval suite across 6 categories. LLMOps: eval-gated CI/CD pipelines.',
+    projectId: 'llmops-platform',
+  },
+  {
+    id: 'cost-optimization',
+    title: 'Cost Optimization',
+    description: 'Right-size every LLM call — cheap models for routing, expensive models for reasoning.',
+    evidence: 'MCP Agent: Haiku for routing (3% cost, 40% of calls). LLMOps: semantic caching + model routing. RAG: per-query cost tracking.',
+    projectId: 'mcp-agent-system',
+  },
+  {
+    id: 'observability',
+    title: 'Observability',
+    description: 'Structured logging, distributed tracing, and dashboards — not just console.log.',
+    evidence: 'LLMOps: LangFuse + OpenTelemetry + 3 Grafana dashboards. All projects: structlog JSON, health endpoints, correlation IDs.',
+    projectId: 'llmops-platform',
+  },
+  {
+    id: 'security',
+    title: 'Security & Safety',
+    description: 'Defense in depth — guardrails, PII detection, RBAC, and audit trails.',
+    evidence: 'MCP Agent: 3-layer guardrails (NeMo + Presidio + output). RAG: Argon2 + tenant isolation. Doc Intel: JWT + RBAC + audit trail.',
+    projectId: 'mcp-agent-system',
+  },
+  {
+    id: 'docker-first',
+    title: 'Docker-First Infrastructure',
+    description: 'One command to run everything — Docker Compose with production multi-stage builds.',
+    evidence: 'All 5 projects: Docker Compose orchestration, persistent volumes, health probes, production builds.',
+    projectId: 'multi-tenant-rag',
+  },
+  {
+    id: 'async-first',
+    title: 'Async-First Architecture',
+    description: 'Non-blocking I/O everywhere — parallel tool execution, streaming responses, background workers.',
+    evidence: 'All use FastAPI + async/await. Doc Intel: Celery workers. MCP Agent: asyncio.gather. RAG: SSE streaming.',
+    projectId: 'mcp-agent-system',
   },
 ];
 
 export const experience: Role[] = [
   {
-    id: 'entegral',
-    title: 'Senior Tech Lead Software Engineer',
-    company: 'Entegral',
-    location: 'Remote - Knysna, South Africa',
-    startDate: 'Mar 2022',
-    endDate: 'Dec 2024',
+    id: 'ai-engineer',
+    title: 'AI Engineer — Freelance & Portfolio',
+    company: 'Independent',
+    location: 'Remote — India',
+    startDate: 'Oct 2025',
+    endDate: 'Present',
     bullets: [
-      'Owned the v1→v2 modernization of a latency-plagued platform; set the technical vision, roadmap, and guardrails tied to SLOs and customer outcomes.',
-      'Partnered across engineering and product teams to lead cross-stack architecture (.NET 6 services on AWS); made critical, business-first trade-offs (e.g., DynamoDB vs. Aurora/Postgres) that protected feature velocity while de-risking delivery.',
-      'Root-caused performance regressions: identified Redis misuse (scatter/gather, client-side joins) as the bottleneck; redesigned cache keys/data shapes and TTL policies, materially improving p95/p99 and stability.',
-      'Repaired DynamoDB anti-patterns: shifted from normalized, multi-table reads to access-pattern-first single-table modeling (GSIs/LSIs) to eliminate N-way reads and in-code joins; simplified hot paths.',
-      'Championed a data-driven product initiative to create an Automated Valuation Model (AVM); built a prototype using a regression model (e.g., XGBoost) on property feature data (size, location) to predict market values, proving the feasibility of a new potential revenue stream.',
+      'Built a multi-tenant RAG platform with hybrid search (dense + BM25 via Reciprocal Rank Fusion), semantic chunking, Cohere reranking, and RAGAS evaluation — achieving 0.91 faithfulness across a 56-question eval set.',
+      'Architected an enterprise AI agent system orchestrating 26 tools across 3 MCP servers using LangGraph, with multi-model cost optimization ($0.04/conversation), 3-layer guardrails, and human-in-the-loop approval via graph interrupts.',
+      'Designed a document intelligence pipeline: tiered OCR extraction, trainable document classification (0.91 F1), NER with entity normalization, and Elasticsearch hybrid search (+22% nDCG@10 vs keyword-only).',
+      'Created an LLMOps platform with prompt versioning, LLM-as-judge evaluation, A/B testing with statistical significance, eval-gated CI/CD pipelines, and semantic caching for cost optimization.',
     ],
-    techStack: [
-      'C#',
-      '.NET 6',
-      'React',
-      'AWS Lambda',
-      'API Gateway',
-      'DynamoDB',
-      'S3',
-      'CloudWatch',
-      'Redis',
-    ],
+    techStack: ['Python', 'FastAPI', 'LangGraph', 'Claude', 'Qdrant', 'Elasticsearch', 'PostgreSQL', 'Redis', 'React', 'Docker'],
   },
   {
     id: 'investello',
@@ -127,20 +244,25 @@ export const experience: Role[] = [
     endDate: 'Oct 2025',
     note: 'Part-time alongside full-time roles until Dec 2024; full-time Jan–Oct 2025',
     bullets: [
-      'Architected and scaled a value-investing SaaS platform from 0 to 1, achieving 50,000+ registered users and ₹10 Lakh ARR by building a differentiated product with automated valuation engines and high-performance stock screeners.',
-      'Designed and evolved the distributed data platform with scheduled ingestion pipelines, idempotent background workers, and resilient APIs; scaled a manual 100-stock pilot into automated daily/quarterly/annual loads processing 500K+ records via provider APIs, with scheduling, retries, and integrity checks ensuring 99.9% data freshness.',
-      'Built an AI-powered earnings report analyzer using Azure Blob Storage, Azure Functions, and Semantic Kernel to parse long-form earnings PDFs into structured summaries, sentiment, and key metrics, thus providing users with qualitative context beyond raw quantitative data.',
-      "After leaving Entegral in Dec 2024, worked full-time on Investello from Jan–Oct 2025 to pursue product–market fit; when it did not reach the traction targets I'd set, I wrapped up active development and decided to return to a full-time staff/principal engineering role in a larger product organization.",
+      'Architected and scaled a value-investing SaaS platform from 0 to 1, growing to 100,000+ registered users with automated valuation engines, high-performance stock screeners, and comprehensive financial analytics for 5,000+ publicly listed companies.',
+      'Designed a distributed data platform with scheduled ingestion pipelines, idempotent background workers, and resilient APIs — processing 1 million+ data points monthly across 5,000 listed companies, scaled from a 100-stock pilot to production-grade reliability with 99.9% data freshness.',
+      'Built an AI-powered earnings report analyzer using Azure OpenAI and Semantic Kernel to parse long-form earnings PDFs into structured summaries, sentiment scores, and key financial metrics.',
     ],
-    techStack: [
-      'C#',
-      'ASP.NET Core',
-      'Azure App Services',
-      'Azure SQL',
-      'Azure Blob Storage',
-      'Azure OpenAI',
-      'Semantic Kernel',
+    techStack: ['C#', 'ASP.NET Core', 'Azure App Services', 'Azure SQL', 'Azure OpenAI', 'Semantic Kernel'],
+  },
+  {
+    id: 'entegral',
+    title: 'Senior Tech Lead Software Engineer',
+    company: 'Entegral',
+    location: 'Remote — South Africa',
+    startDate: 'Mar 2022',
+    endDate: 'Dec 2024',
+    bullets: [
+      'Owned v1→v2 platform modernization; set technical vision, roadmap, and guardrails tied to SLOs and customer outcomes.',
+      'Root-caused performance regressions: redesigned Redis cache keys/data shapes and DynamoDB access patterns, materially improving p95/p99 latencies.',
+      'Led platform modernization to eliminate technical debt — evaluated and overhauled the technical architecture end-to-end while keeping a business-first approach, ensuring feature velocity and system reliability improved in parallel.',
     ],
+    techStack: ['C#', '.NET 6', 'AWS Lambda', 'DynamoDB', 'Redis', 'React'],
   },
   {
     id: 'consultant',
@@ -150,37 +272,21 @@ export const experience: Role[] = [
     startDate: 'Jan 2018',
     endDate: 'Mar 2022',
     bullets: [
-      'Asharqiya Chamber of Commerce (Saudi Arabia): Architected and led the development of a secure membership portal using .NET Core and SQL Server, implementing configurable workflows, RBAC, and robust auditing to meet enterprise requirements.',
-      'IDrive (USA) - Enterprise Backup Solution: Designed and built high-reliability backup/restore services in C# with MongoDB and AWS S3, engineering for data integrity with checksums, resumable uploads, and idempotent operations.',
-      'GrantEd (USA) - Scholarship Matching Platform: Developed a sophisticated rules and matching engine in .NET with PostgreSQL, designing scalable schemas and asynchronous notification queues to handle complex eligibility logic.',
+      'Delivered enterprise solutions across Saudi Arabia, USA, and India — including secure membership portals, backup services with data integrity guarantees, and scholarship matching engines.',
+      'Led architecture and development using .NET Core, PostgreSQL, MongoDB, and cloud services across Azure and AWS.',
     ],
-    techStack: ['C#', '.NET Core', 'React', 'AWS', 'Azure', 'PostgreSQL', 'MongoDB', 'SQL Server'],
-  },
-  {
-    id: 'cacawaa',
-    title: 'Lead Engineer & Architect',
-    company: 'Cacawaa',
-    location: 'Remote - Kuwait City, Kuwait',
-    startDate: 'Apr 2014',
-    endDate: 'Dec 2017',
-    bullets: [
-      'Defined technical strategy and system architecture; built a three-app platform (Customer UI, Shop Control Panel, Admin Console) to power a multi-merchant marketplace.',
-      'Led backend and cloud architecture on Azure (C#, ASP.NET MVC, SQL Server; VMs/Cloud Services, Blob Storage, CDN); established code reviews and development standards for long-term maintainability.',
-      'Drove execution as head of an 8-engineer team—ran Agile ceremonies, removed blockers, improved dev/deployment processes; partnered with CEO/marketing to prioritize the roadmap against business goals.',
-    ],
-    techStack: ['C#', 'ASP.NET MVC', 'SQL Server', 'Azure VMs', 'Azure Blob Storage', 'Azure CDN'],
+    techStack: ['C#', '.NET Core', 'React', 'AWS', 'Azure', 'PostgreSQL', 'MongoDB'],
   },
   {
     id: 'early-career',
-    title: 'Early Career — Full-time Roles & Projects',
-    company: 'IVP, Arxmind, Contata & Others',
-    location: 'Delhi NCR',
+    title: 'Lead Engineer & Architect → Early Career',
+    company: 'Cacawaa, IVP, Arxmind, Contata & Others',
+    location: 'Remote & Delhi NCR',
     startDate: 'Jun 2007',
-    endDate: 'Apr 2014',
+    endDate: 'Dec 2017',
     bullets: [
-      'Full Time Roles: Associate Software Engineer (Indus Valley Partners, Jun 2007 – Jun 2008); Senior Software Engineer (Arxmind, Sep 2009 – Sep 2011); Senior System Analyst (Contata, Oct 2011 – Jun 2012).',
-      'Worked across ASP.Net, C#, SQL Server, Azure on data-driven enterprise apps — database design, clean and maintainable code, unit testing, and performance tuning.',
-      'Jul 2012 – Mar 2014: Independent Consultant — executed tech projects across EdTech, Insurance; built data models, APIs, and production-ready services and applications using C#, ASP.Net, SQL Server, Azure.',
+      'Defined technical strategy at Cacawaa (Kuwait): built a 3-app multi-merchant marketplace platform, led an 8-engineer team.',
+      'Full-stack enterprise development across FinTech, E-Commerce, and EdTech using C#, ASP.NET, SQL Server, and Azure.',
     ],
     techStack: ['C#', 'ASP.NET', 'SQL Server', 'Azure'],
   },
@@ -188,80 +294,80 @@ export const experience: Role[] = [
 
 export const skills: SkillCategory[] = [
   {
-    id: 'leadership',
-    name: 'Leadership & Strategy',
+    id: 'ai-llm',
+    name: 'AI & LLM Engineering',
     skills: [
-      'Technical Vision & Roadmaps',
-      'Data-Driven Strategy',
-      'Technical Prototyping',
-      'Cross-functional Collaboration',
-      'Product Partnership',
-      'Mentoring Senior Engineers',
-      'Agile/Scrum',
+      'RAG Systems',
+      'LangGraph',
+      'LangChain',
+      'Claude API',
+      'OpenAI API',
+      'Prompt Engineering',
+      'MCP Servers',
+      'RAGAS Evaluation',
+      'Embeddings & Vector Search',
+      'Guardrails (NeMo, Presidio)',
     ],
   },
   {
-    id: 'architecture',
-    name: 'Architecture & Systems',
+    id: 'python',
+    name: 'Python Ecosystem',
+    skills: [
+      'Python',
+      'FastAPI',
+      'Celery',
+      'spaCy',
+      'scikit-learn',
+      'Pydantic',
+      'asyncio',
+    ],
+  },
+  {
+    id: 'infrastructure',
+    name: 'Infrastructure & Data',
+    skills: [
+      'Docker',
+      'PostgreSQL',
+      'Redis',
+      'Elasticsearch',
+      'Qdrant',
+      'MinIO',
+      'OpenTelemetry',
+      'Grafana',
+    ],
+  },
+  {
+    id: 'frontend',
+    name: 'Frontend',
+    skills: [
+      'React',
+      'TypeScript',
+      'Tailwind CSS',
+      'WebSocket',
+      'Vite',
+    ],
+  },
+  {
+    id: 'enterprise-cloud',
+    name: 'Enterprise & Cloud',
+    skills: [
+      'C# / .NET',
+      'Azure (App Services, Functions, SQL, OpenAI)',
+      'AWS (Lambda, DynamoDB, S3)',
+      'System Design',
+      'Multi-Tenancy',
+    ],
+  },
+  {
+    id: 'practices',
+    name: 'Engineering Practices',
     skills: [
       'Distributed Systems',
-      'Cloud-Native Architecture',
-      'Applied AI/ML',
-      'System Modernization',
-      'Microservices',
-      'Event-Driven Design',
-      'Performance Optimization',
-    ],
-  },
-  {
-    id: 'engineering',
-    name: 'Engineering Excellence',
-    skills: ['C#', '.NET 8', 'ASP.NET Core', 'Web API', 'React', 'Redux', 'TypeScript'],
-  },
-  {
-    id: 'ai-ml',
-    name: 'AI / Machine Learning',
-    skills: [
-      'Semantic Kernel',
-      'LangChain',
-      'Azure OpenAI',
-      'Azure Cognitive Services',
-      'AWS SageMaker',
-      'Python (Scikit-learn)',
-      'ML.NET',
-      'NLP',
-      'Regression Models',
-    ],
-  },
-  {
-    id: 'sre-devops',
-    name: 'SRE & DevOps',
-    skills: [
-      'Observability (Monitoring, Logging, Tracing)',
-      'SLOs/SLIs',
-      'CI/CD Automation',
-      'Infrastructure-as-Code (IaC)',
-    ],
-  },
-  {
-    id: 'cloud',
-    name: 'Data & Cloud',
-    skills: [
-      'Azure App Service',
-      'Azure Functions',
-      'Azure SQL',
-      'Cosmos DB',
-      'Azure Blob Storage',
-      'Azure Service Bus',
-      'Azure Event Hubs',
-      'AWS Lambda',
-      'API Gateway',
-      'DynamoDB',
-      'S3',
-      'SQL Server',
-      'PostgreSQL',
-      'MongoDB',
-      'Redis',
+      'Observability & SRE',
+      'CI/CD Pipelines',
+      'Evaluation-Driven Development',
+      'Technical Leadership',
+      'Agile / Scrum',
     ],
   },
 ];
@@ -276,5 +382,39 @@ export const education: EducationData = {
 
 export const contact: ContactData = {
   email: 'rohitjain84@gmail.com',
-  linkedIn: 'https://tinyurl.com/rohit9',
+  linkedIn: 'https://www.linkedin.com/in/rohitjaintech/',
+  github: 'https://github.com/rohit-jain84',
 };
+
+export const WHATSAPP_URL = 'https://wa.me/919999766876?text=' + encodeURIComponent('Hi Rohit, I visited your portfolio and would like to discuss a project.');
+
+export const services: ServiceArea[] = [
+  {
+    id: 'rag',
+    title: 'RAG Systems & Semantic Search',
+    description:
+      'Production retrieval-augmented generation with hybrid search, reranking, evaluation frameworks, and multi-tenant isolation.',
+    tags: ['Qdrant', 'Elasticsearch', 'RAGAS', 'Cohere'],
+  },
+  {
+    id: 'agents',
+    title: 'AI Agent Development',
+    description:
+      'Multi-tool agent orchestration with MCP servers, LangGraph workflows, cost-optimized model routing, guardrails, and human-in-the-loop approval.',
+    tags: ['LangGraph', 'MCP', 'Claude', 'Tool Use'],
+  },
+  {
+    id: 'document-ai',
+    title: 'Document Intelligence',
+    description:
+      'End-to-end document processing: OCR extraction, classification, entity recognition, and semantic search with access control.',
+    tags: ['OCR', 'NER', 'Classification', 'Elasticsearch'],
+  },
+  {
+    id: 'llmops',
+    title: 'LLMOps & AI Pipelines',
+    description:
+      'Prompt versioning, A/B testing, eval-gated CI/CD, observability, and cost optimization for AI applications in production.',
+    tags: ['CI/CD', 'Evaluation', 'Observability', 'Caching'],
+  },
+];

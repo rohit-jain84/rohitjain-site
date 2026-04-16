@@ -1,108 +1,81 @@
 # Rohit Jain
 
-**Engineering Leader & Architect — Distributed Systems, .NET**
+**AI Engineer | RAG Systems, LLM Agents & LLMOps | 17+ Years Enterprise Architecture**
 
-**Email:** rohitjain84@gmail.com | **Phone:** +91 9999766876
-**LinkedIn:** https://tinyurl.com/rohit9
-
----
-
-- Engineering leader and architect with 17 years of experience delivering highly scalable, distributed SaaS platforms across FinTech, E-Commerce, and Enterprise domains.
-- Expertise in modernizing complex, high-throughput systems using .NET 8, C#, cloud-native patterns, and applied AI/ML on Azure and AWS, with a focus on improving performance, security, and reliability through SRE and DevOps principles.
-- Proven ability to drive company-wide technical strategy, set architectural standards, mentor engineers at all levels, and partner across teams to align execution with business outcomes (increased user retention, reduced costs).
+rohitjain84@gmail.com | [LinkedIn](https://tinyurl.com/rohit9) | [GitHub](https://github.com/rohit-jain84) | [Portfolio](https://rohitjain.net)
 
 ---
 
-## Work History
+## Summary
 
-### Senior Tech Lead Software Engineer
-**Entegral, Remote - Knysna, South Africa** | *2022-03 - 2024-12*
-
-- Owned the v1->v2 modernization of a latency-plagued platform; set the technical vision, roadmap, and guardrails tied to SLOs and customer outcomes.
-- Partnered across engineering and product teams to lead cross-stack architecture (.NET 6 services on AWS); made critical, business-first trade-offs (e.g., DynamoDB vs. Aurora/Postgres) that protected feature velocity while de-risking delivery.
-- Root-caused performance regressions: identified Redis misuse (scatter/gather, client-side joins) as the bottleneck; redesigned cache keys/data shapes and TTL policies, materially improving p95/p99 and stability.
-- Repaired DynamoDB anti-patterns: shifted from normalized, multi-table reads to access-pattern-first single-table modeling (GSIs/LSIs) to eliminate N-way reads and in-code joins; simplified hot paths.
-- Championed a data-driven product initiative to create an Automated Valuation Model (AVM); built a prototype using a regression model (e.g., XGBoost) on property feature data (size, location) to predict market values, proving the feasibility of a new potential revenue stream.
-
-**Tech Stack:** C#, .NET 6, React, AWS (Lambda, API Gateway, DynamoDB single-table, S3, CloudWatch), Redis
+AI engineer with 17 years of enterprise backend experience. I build production-grade RAG systems, multi-tool AI agents, and document intelligence pipelines — with evaluation frameworks that prove they work. My enterprise background is the differentiator: multi-tenancy, fault tolerance, observability, and cost optimization are built into the architecture from day one.
 
 ---
 
-### CTO & Principal Architect (Founder) (Concurrent Entrepreneurial Venture)
-**Investello** | *2016-07 - 2025-10*
-*(part-time alongside full-time roles until Dec 2024; full-time Jan–Oct 2025)*
+## AI Portfolio Projects
 
-- Architected and scaled a value-investing SaaS platform from 0 to 1, achieving 50,000+ registered users and ₹10 Lakh ARR by building a differentiated product with automated valuation engines and high-performance stock screeners.
-- Designed and evolved the distributed data platform with scheduled ingestion pipelines, idempotent background workers, and resilient APIs; scaled a manual 100-stock pilot into automated daily/quarterly/annual loads processing 500K+ records via provider APIs, with scheduling, retries, and integrity checks ensuring 99.9% data freshness.
-- Built an AI-powered earnings report analyzer using Azure Blob Storage, Azure Functions, and Semantic Kernel to parse long-form earnings PDFs into structured summaries, sentiment, and key metrics, thus providing users with qualitative context beyond raw quantitative data.
-- After leaving Entegral in Dec 2024, worked full-time on Investello from Jan–Oct 2025 to pursue product–market fit; when it did not reach the traction targets I'd set, I wrapped up active development and decided to return to a full-time staff/principal engineering role in a larger product organization.
+### Multi-Tenant RAG Platform
+*Python, FastAPI, Qdrant, PostgreSQL, Redis, React*
 
-**Tech Stack:** C#, ASP.Net Core, Azure (App Services, SQL, Blob, OpenAI Service), Semantic Kernel
+- Built a document Q&A platform with hybrid search (dense + BM25 via Reciprocal Rank Fusion), semantic chunking with parent-child retrieval, and Cohere reranking with CrossEncoder fallback
+- Achieved 0.91 faithfulness and 0.87 context recall across a 56-question RAGAS evaluation set
+- Implemented physical multi-tenant isolation (per-tenant Qdrant collections, separate Redis keys, Argon2 API key hashing)
+- Hybrid search improved context precision by +12% over dense-only; reranking improved relevance by +18%
+
+### Enterprise AI Agents with MCP
+*LangGraph, Claude (Sonnet + Haiku), FastMCP, FastAPI, React, PostgreSQL, Redis*
+
+- Architected a LangGraph agent orchestrating 26 tools across 3 MCP servers (GitHub, project management, calendar)
+- Multi-model cost optimization: Haiku for routing ($0.04/conversation avg), Sonnet for reasoning — 40% of LLM calls at 3% of cost
+- Human-in-the-loop via LangGraph graph interrupts with PostgreSQL checkpointing (durable, survives restarts)
+- 3-layer guardrails (NeMo Guardrails + Presidio PII + output rails) achieving 95% adversarial block rate
+
+### Document Intelligence Platform
+*Python, FastAPI, Elasticsearch, PostgreSQL, Celery, MinIO, spaCy, scikit-learn*
+
+- Built a 7-stage async pipeline: tiered OCR (Tika → pdfplumber → Tesseract), trainable classification (TF-IDF + SVM, 0.91 F1), NER with entity normalization
+- Elasticsearch hybrid search (BM25 + kNN) improved nDCG@10 by +22% over keyword-only
+- Collection-level RBAC with JWT authentication and hierarchical permissions
+
+### LLMOps Platform
+*Python, FastAPI, PostgreSQL, Redis, LangFuse, OpenTelemetry, Grafana*
+
+- Prompt versioning with Jinja2 templates, LLM-as-judge evaluation, A/B testing with Welch's t-test significance
+- Eval-gated CI/CD: deployments blocked if faithfulness drops below threshold
+- Semantic caching for cost optimization, canary rollouts (10% → 25% → 50% → 100%)
 
 ---
 
-### Principal Engineer & Architect (Consultant)
-**Multiple Clients, Remote** | *2018-01 - 2022-03*
+## Professional Experience
 
-- **Asharqiya Chamber of Commerce (Saudi Arabia):** Architected and led the development of a secure membership portal using .NET Core and SQL Server, implementing configurable workflows, RBAC, and robust auditing to meet enterprise requirements.
-- **IDrive (USA) - Enterprise Backup Solution:** Designed and built high-reliability backup/restore services in C# with MongoDB and AWS S3, engineering for data integrity with checksums, resumable uploads, and idempotent operations.
-- **GrantEd (USA) - Scholarship Matching Platform:** Developed a sophisticated rules and matching engine in .NET with PostgreSQL, designing scalable schemas and asynchronous notification queues to handle complex eligibility logic.
+### AI Engineer — Freelance & Portfolio | Oct 2025 – Present
+Building production AI systems with measurable results. Focus: RAG, agents, document intelligence, LLMOps.
 
-**Tech Stack:** C#, React, .Net Core, AWS, Azure, PostgreSQL, Mongo DB, SQL Server
+### CTO & Principal Architect — Investello | Jul 2016 – Oct 2025
+Architected a value-investing SaaS platform (50,000+ users, ₹10 Lakh ARR). Distributed data platform processing 500K+ records with 99.9% freshness. AI-powered earnings analyzer using Azure OpenAI + Semantic Kernel.
 
----
+### Senior Tech Lead — Entegral | Mar 2022 – Dec 2024
+Led v1→v2 platform modernization on AWS. Redesigned Redis and DynamoDB access patterns, materially improving p95/p99 latencies. Prototyped AVM using XGBoost.
 
-### Lead Engineer & Architect
-**Cacawaa, Remote - Kuwait City, Kuwait** | *2014-04 - 2017-12*
+### Principal Engineer & Architect (Consultant) | Jan 2018 – Mar 2022
+Delivered enterprise solutions across Saudi Arabia, USA, and India using .NET Core, PostgreSQL, MongoDB, and cloud services.
 
-- Defined technical strategy and system architecture; built a three-app platform (Customer UI, Shop Control Panel, Admin Console) to power a multi-merchant marketplace.
-- Led backend and cloud architecture on Azure (C#, ASP.NET MVC, SQL Server; VMs/Cloud Services, Blob Storage, CDN); established code reviews and development standards for long-term maintainability.
-- Drove execution as head of an 8-engineer team—ran Agile ceremonies, removed blockers, improved dev/deployment processes; partnered with CEO/marketing to prioritize the roadmap against business goals.
-
-**Tech Stack:** C#, ASP.NET MVC, SQL Server, Azure (VMs/Cloud Services, Blob Storage, CDN)
+### Lead Engineer & Architect → Early Career | Jun 2007 – Dec 2017
+Built multi-merchant marketplace (Cacawaa, Kuwait), led 8-engineer team. Full-stack enterprise development across FinTech, E-Commerce, and EdTech.
 
 ---
 
-### Early Career — Full-time Roles & Projects
-**IVP, Arxmind, Contata & Others, Delhi NCR** | *2007-06 - 2014-04*
+## Technical Skills
 
-- **Full Time Roles:** Associate Software Engineer (Indus Valley Partners, Jun 2007 – Jun 2008); Senior Software Engineer (Arxmind, Sep 2009 – Sep 2011); Senior System Analyst (Contata, Oct 2011 – Jun 2012).
-- Worked across ASP.Net, C#, SQL Server, Azure on data-driven enterprise apps — database design, clean and maintainable code, unit testing, and performance tuning.
-- **Jul 2012 – Mar 2014:** Independent Consultant — executed tech projects across EdTech, Insurance; built data models, APIs, and production-ready services and Applications using C#, ASP.Net, SQL Server, Azure.
+**AI & LLM:** RAG, LangGraph, LangChain, Claude API, OpenAI API, MCP Servers, RAGAS, Prompt Engineering, Guardrails (NeMo, Presidio)
+**Python:** FastAPI, Celery, spaCy, scikit-learn, Pydantic, asyncio
+**Infrastructure:** Docker, PostgreSQL, Redis, Elasticsearch, Qdrant, MinIO, OpenTelemetry, Grafana
+**Frontend:** React, TypeScript, Tailwind CSS, WebSocket
+**Enterprise:** C#/.NET, Azure, AWS, System Design, Multi-Tenancy, Observability
 
 ---
 
 ## Education
 
-### Information Technology, Bachelor of Engineering
-**Netaji Subhas University of Technology (NSUT), formerly NSIT, Dwarka, Delhi** | *2003-07 - 2007-06*
-
----
-
-## Core Competencies
-
-### Leadership & Strategy
-Technical Vision & Roadmaps, Data-Driven Strategy, Technical Prototyping, Cross-functional Collaboration, Product Partnership, Mentoring Senior Engineers, Agile/Scrum
-
-### Architecture & Systems
-Distributed Systems, Cloud-Native Architecture, Applied AI/ML, System Modernization, Microservices, Event-Driven Design, Performance Optimization
-
-### Engineering Excellence
-C#, .NET 8, ASP.NET Core/Web API, React, Redux, TypeScript
-
-### AI/Machine Learning
-Semantic Kernel, LangChain, Azure AI Services (OpenAI, Cognitive Services), AWS SageMaker, Python (Scikit-learn), ML.NET, NLP, Regression Models
-
-### SRE & DevOps
-Observability (Monitoring, Logging, Tracing), SLOs/SLIs, CI/CD Automation, Infrastructure-as-Code (IaC)
-
-### Data & Cloud
-
-**Azure:** App Service, Functions, API Management, Azure SQL, Cosmos DB (NoSQL), Data Explorer, Blob Storage, Event Grid, Service Bus, Event Hubs, Key Vault, Application Insights, Monitor, Container Apps
-
-**AWS:** Lambda, API Gateway, DynamoDB, S3, EC2
-
-**Databases:** SQL Server, PostgreSQL, DynamoDB, MongoDB, Redis
-
-### Tools & Practices
-GitHub, Test Strategy & Automation (TDD), Design Patterns, Code Quality, Security Best Practices (OWASP Top 10), Cloud Architecture (Well-Architected Framework)
+**Bachelor of Engineering — Information Technology**
+Netaji Subhas University of Technology (NSUT), Delhi | 2003 – 2007

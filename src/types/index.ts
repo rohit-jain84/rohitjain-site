@@ -3,6 +3,7 @@ export interface HeroData {
   title: string;
   photoUrl: string;
   headline: string;
+  availableForWork: boolean;
 }
 
 export interface SummaryData {
@@ -12,12 +13,24 @@ export interface SummaryData {
 export interface Project {
   id: string;
   title: string;
-  context: string;
-  approach: string;
-  outcome: string;
-  architecturalInsight: string;
+  description: string;
   techStack: string[];
-  source: string;
+  githubUrl?: string;
+  caseStudySlug?: string;
+  category: 'rag' | 'agents' | 'document-ai' | 'llmops' | 'code-review' | 'enterprise';
+  highlights: string[];
+  heroScreenshot?: string;
+  screenshots?: { src: string; alt: string }[];
+  scenario?: string;
+  architectureOneLiner?: string;
+}
+
+export interface DesignPrinciple {
+  id: string;
+  title: string;
+  description: string;
+  evidence: string;
+  projectId: string;
 }
 
 export interface Role {
@@ -48,9 +61,18 @@ export interface EducationData {
 export interface ContactData {
   email: string;
   linkedIn: string;
+  github: string;
+  upwork?: string;
 }
 
 export interface NavItem {
   label: string;
   href: string;
+}
+
+export interface ServiceArea {
+  id: string;
+  title: string;
+  description: string;
+  tags: string[];
 }

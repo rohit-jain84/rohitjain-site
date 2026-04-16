@@ -7,3 +7,4 @@ export { Skills } from './Skills';
 export { Education } from './Education';
 export { Contact } from './Contact';
 export { Footer } from './Footer';
+export { Layout } from './Layout';

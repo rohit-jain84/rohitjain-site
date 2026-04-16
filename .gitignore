@@ -46,3 +46,6 @@ temp/
 
 # Claude
 .claude/
+
+# Planning docs (not for commit)
+plan*.html
