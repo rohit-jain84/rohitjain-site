@@ -200,6 +200,8 @@ export function ArticleDetail() {
             <img
               src="/photo/Rohit Jain.jpg"
               alt="Rohit Jain"
+              loading="lazy"
+              decoding="async"
               className="w-16 h-16 rounded-full object-cover object-top flex-shrink-0"
             />
             <div className="text-center sm:text-left">

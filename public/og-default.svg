@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#4f46e5"/>
+      <stop offset="100%" stop-color="#818cf8"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect x="0" y="0" width="1200" height="4" fill="url(#accent)"/>
+  <text x="80" y="240" font-family="system-ui,-apple-system,sans-serif" font-size="64" font-weight="800" fill="#f8fafc">Rohit Jain</text>
+  <text x="80" y="310" font-family="system-ui,-apple-system,sans-serif" font-size="32" fill="#94a3b8">AI Engineer</text>
+  <text x="80" y="380" font-family="system-ui,-apple-system,sans-serif" font-size="24" fill="#64748b">Production RAG Systems · LLM Agents · Document Intelligence</text>
+  <text x="80" y="430" font-family="system-ui,-apple-system,sans-serif" font-size="24" fill="#64748b">17+ Years Enterprise Architecture</text>
+  <text x="80" y="550" font-family="system-ui,-apple-system,sans-serif" font-size="20" fill="#475569">rohitjain.net</text>
+  <rect x="1040" y="180" width="100" height="100" rx="16" fill="url(#accent)" opacity="0.15"/>
+  <text x="1090" y="248" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="48" font-weight="800" fill="#818cf8">RJ</text>
+</svg>

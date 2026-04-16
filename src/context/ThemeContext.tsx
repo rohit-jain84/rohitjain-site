@@ -131,8 +131,8 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       const savedId = localStorage.getItem('themeId');
       const found = themes.find((t) => t.id === savedId);
       if (found) return found;
-      // Default based on system preference
-      return window.matchMedia('(prefers-color-scheme: dark)').matches ? themes[0] : themes[1];
+      // Default to Charcoal for dark preference, Parchment otherwise
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? themes[2] : themes[0];
     }
     return themes[0];
   });

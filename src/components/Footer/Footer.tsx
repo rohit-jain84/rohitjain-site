@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { contact } from '../../data/resume';
+import { ThemeToggle } from '../shared/ThemeToggle';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -16,7 +17,7 @@ export function Footer() {
             <p className="text-sm text-text-muted mt-1">AI Engineer — Production Systems with Enterprise Design Principles</p>
           </div>
 
-          {/* Links */}
+          {/* Links + Theme */}
           <div className="flex items-center gap-6">
             <a
               href={`mailto:${contact.email}`}
@@ -40,6 +41,7 @@ export function Footer() {
             >
               GitHub
             </a>
+            <ThemeToggle />
           </div>
         </div>
 

@@ -1,7 +1,52 @@
+import { useState } from 'react';
 import { SEOHead } from '../components/shared/SEOHead';
 import { contact, WHATSAPP_URL } from '../data/resume';
 
+interface FormErrors {
+  name?: string;
+  email?: string;
+  message?: string;
+}
+
+function validate(name: string, email: string, message: string): FormErrors {
+  const errors: FormErrors = {};
+  if (name.trim().length < 2) errors.name = 'Name must be at least 2 characters.';
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) errors.email = 'Please enter a valid email address.';
+  if (message.trim().length < 10) errors.message = 'Message must be at least 10 characters.';
+  return errors;
+}
+
 export function Contact() {
+  const [touched, setTouched] = useState<Record<string, boolean>>({});
+  const [values, setValues] = useState({ name: '', email: '', message: '' });
+  const errors = validate(values.name, values.email, values.message);
+  const isValid = Object.keys(errors).length === 0;
+
+  function handleBlur(field: string) {
+    setTouched((prev) => ({ ...prev, [field]: true }));
+  }
+
+  function handleChange(field: string, value: string) {
+    setValues((prev) => ({ ...prev, [field]: value }));
+  }
+
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setTouched({ name: true, email: true, message: true });
+    if (!isValid) return;
+
+    const name = values.name.trim();
+    const email = values.email.trim();
+    const message = values.message.trim();
+    const msg = `Hi Rohit, I'm ${name} (${email}). ${message}`;
+    window.open(`https://wa.me/919999766876?text=${encodeURIComponent(msg)}`, '_blank');
+  }
+
+  const fieldClass = (field: keyof FormErrors) =>
+    `w-full px-4 py-2.5 rounded-lg border bg-surface-secondary text-text-primary placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition-colors ${
+      touched[field] && errors[field] ? 'border-error' : 'border-border-default'
+    }`;
+
   return (
     <>
       <SEOHead
@@ -23,7 +68,7 @@ export function Contact() {
           {/* Contact Form */}
           <div>
             <h2 className="text-lg font-bold text-text-primary mb-6">Send a Message</h2>
-            <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); const fd = new FormData(e.currentTarget); const msg = `Hi Rohit, I'm ${fd.get('name') || 'interested'}. ${fd.get('message') || ''}`; window.open(`https://wa.me/919999766876?text=${encodeURIComponent(msg)}`, '_blank'); }}>
+            <form className="space-y-4" onSubmit={handleSubmit} noValidate>
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-text-secondary mb-1">Name</label>
                 <input
@@ -31,9 +76,15 @@ export function Contact() {
                   id="name"
                   name="name"
                   required
-                  className="w-full px-4 py-2.5 rounded-lg border border-border-default bg-surface-secondary text-text-primary placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition-colors"
+                  value={values.name}
+                  onChange={(e) => handleChange('name', e.target.value)}
+                  onBlur={() => handleBlur('name')}
+                  className={fieldClass('name')}
                   placeholder="Your name"
                 />
+                {touched.name && errors.name && (
+                  <p className="text-xs text-error mt-1">{errors.name}</p>
+                )}
               </div>
               <div>
                 <label htmlFor="email" className="block text-sm font-medium text-text-secondary mb-1">Email</label>
@@ -42,9 +93,15 @@ export function Contact() {
                   id="email"
                   name="email"
                   required
-                  className="w-full px-4 py-2.5 rounded-lg border border-border-default bg-surface-secondary text-text-primary placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition-colors"
+                  value={values.email}
+                  onChange={(e) => handleChange('email', e.target.value)}
+                  onBlur={() => handleBlur('email')}
+                  className={fieldClass('email')}
                   placeholder="you@example.com"
                 />
+                {touched.email && errors.email && (
+                  <p className="text-xs text-error mt-1">{errors.email}</p>
+                )}
               </div>
               <div>
                 <label htmlFor="message" className="block text-sm font-medium text-text-secondary mb-1">Message</label>
@@ -53,13 +110,20 @@ export function Contact() {
                   name="message"
                   rows={5}
                   required
-                  className="w-full px-4 py-2.5 rounded-lg border border-border-default bg-surface-secondary text-text-primary placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition-colors resize-y"
+                  value={values.message}
+                  onChange={(e) => handleChange('message', e.target.value)}
+                  onBlur={() => handleBlur('message')}
+                  className={`${fieldClass('message')} resize-y`}
                   placeholder="Tell me about your project..."
                 />
+                {touched.message && errors.message && (
+                  <p className="text-xs text-error mt-1">{errors.message}</p>
+                )}
               </div>
               <button
                 type="submit"
-                className="w-full px-6 py-3 rounded-lg text-base font-semibold text-white gradient-brand shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200"
+                disabled={Object.keys(touched).length > 0 && !isValid}
+                className="w-full px-6 py-3 rounded-lg text-base font-semibold text-white gradient-brand shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:shadow-md"
               >
                 Send Message
               </button>
