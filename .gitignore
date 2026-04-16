@@ -62,7 +62,8 @@ backup/
 # Legacy/stale directories removed from tracking
 portfolio/
 photo/
-screenshots/
+# Root-level screenshots/ ignored, but public/screenshots/ is tracked
+/screenshots/
 .gitmodules
 
 # Binary files
