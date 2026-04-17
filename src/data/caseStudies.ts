@@ -46,8 +46,8 @@ export const caseStudies: CaseStudy[] = [
       'How I built a document Q&A platform with hybrid search, reranking, and automated evaluation',
     githubUrl: 'https://github.com/rohit-jain84/multi-tenant-rag-platform',
     screenshots: [
-      { light: '/screenshots/rag-platform/dark/tenants.png', dark: '/screenshots/rag-platform/light/tenants.png', alt: 'Tenant management — 3 tenants with rate limits and green status' },
-      { light: '/screenshots/rag-platform/dark/evaluation.png', dark: '/screenshots/rag-platform/light/evaluation.png', alt: 'RAGAS evaluation — Context Recall, Faithfulness, Answer Relevancy, Context Precision' },
+      { light: '/screenshots/rag-platform/dark/tenants.png', dark: '/screenshots/rag-platform/dark/tenants.png', alt: 'Tenant management — 3 tenants with rate limits and green status' },
+      { light: '/screenshots/rag-platform/dark/evaluation.png', dark: '/screenshots/rag-platform/dark/evaluation.png', alt: 'RAGAS evaluation — Context Recall, Faithfulness, Answer Relevancy, Context Precision' },
     ],
     scenarios: [
       { title: 'HR Policy Search', description: 'HR uploads 200 policy documents. Employee asks "What is the parental leave policy for employees in India?" and gets a cited answer with page numbers in under 2 seconds.' },
@@ -211,9 +211,9 @@ for rank, chunk in enumerate(sparse_results, start=1):
       'LangGraph-based agent orchestrating 26 tools across three MCP servers, with multi-model cost optimization, parallel execution, and layered safety controls',
     githubUrl: 'https://github.com/rohit-jain84/enterprise-mcp-agent-system',
     screenshots: [
-      { light: '/screenshots/mcp-agent/dark/chat.png', dark: '/screenshots/mcp-agent/light/chat.png', alt: 'Multi-tool orchestration with tool calls and ticket table' },
-      { light: '/screenshots/mcp-agent/dark/approvals.png', dark: '/screenshots/mcp-agent/light/approvals.png', alt: 'Human-in-the-loop approval queue with pending requests' },
-      { light: '/screenshots/mcp-agent/dark/history.png', dark: '/screenshots/mcp-agent/light/history.png', alt: 'Session history with 4 agent conversations' },
+      { light: '/screenshots/mcp-agent/dark/chat.png', dark: '/screenshots/mcp-agent/dark/chat.png', alt: 'Multi-tool orchestration with tool calls and ticket table' },
+      { light: '/screenshots/mcp-agent/dark/approvals.png', dark: '/screenshots/mcp-agent/dark/approvals.png', alt: 'Human-in-the-loop approval queue with pending requests' },
+      { light: '/screenshots/mcp-agent/dark/history.png', dark: '/screenshots/mcp-agent/dark/history.png', alt: 'Session history with 4 agent conversations' },
     ],
     scenarios: [
       { title: 'PM Morning Briefing', description: '"What happened over the weekend?" — agent pulls PRs merged, tickets closed, sprint velocity, and upcoming meetings into one consolidated summary.' },
@@ -419,9 +419,9 @@ def is_write_tool(tool_name: str) -> bool:
       'Multi-stage ML pipeline turning unstructured enterprise documents into searchable, classified, entity-rich intelligence',
     githubUrl: 'https://github.com/rohit-jain84/enterprise-document-intelligence-platform',
     screenshots: [
-      { light: '/screenshots/document-intelligence/dark/entities.png', dark: '/screenshots/document-intelligence/light/entities.png', alt: 'Entity dashboard — 48 NER entities with pie charts and type distribution' },
-      { light: '/screenshots/document-intelligence/dark/dashboard.png', dark: '/screenshots/document-intelligence/light/dashboard.png', alt: 'Dashboard — 12 documents, 3 collections, recent documents table' },
-      { light: '/screenshots/document-intelligence/dark/collections.png', dark: '/screenshots/document-intelligence/light/collections.png', alt: 'Collections — Finance, Legal, HR with 4 documents each' },
+      { light: '/screenshots/document-intelligence/dark/entities.png', dark: '/screenshots/document-intelligence/dark/entities.png', alt: 'Entity dashboard — 48 NER entities with pie charts and type distribution' },
+      { light: '/screenshots/document-intelligence/dark/dashboard.png', dark: '/screenshots/document-intelligence/dark/dashboard.png', alt: 'Dashboard — 12 documents, 3 collections, recent documents table' },
+      { light: '/screenshots/document-intelligence/dark/collections.png', dark: '/screenshots/document-intelligence/dark/collections.png', alt: 'Collections — Finance, Legal, HR with 4 documents each' },
     ],
     scenarios: [
       { title: 'Legal Contract Search', description: 'Upload 500 vendor contracts (mix of native PDFs and scans). System OCRs everything, extracts company names, dates, amounts, and enables search like "Find contracts with auto-renewal clauses expiring before Q3."' },
