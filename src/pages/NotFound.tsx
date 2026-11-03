@@ -4,7 +4,7 @@ import { SEOHead } from '../components/shared/SEOHead';
 export function NotFound() {
   return (
     <>
-      <SEOHead title="404" description="Page not found" />
+      <SEOHead title="404" description="Page not found" noindex />
 
       <div className="max-w-4xl mx-auto px-4 md:px-8 py-24 md:py-32 text-center">
         <p className="text-6xl font-black gradient-text mb-4">404</p>

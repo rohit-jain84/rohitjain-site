@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet-async';
+import { SITE_URL, SITE_NAME, DEFAULT_OG_IMAGE, buildTitle } from '../../data/seo';
 
 interface SEOHeadProps {
   title: string;
@@ -8,17 +9,14 @@ interface SEOHeadProps {
   publishDate?: string;
   image?: string;
   jsonLd?: Record<string, unknown>;
+  /** Keep the page out of search indexes (404, drafts). */
+  noindex?: boolean;
 }
 
-const BASE_URL = 'https://rohitjain.net';
-const DEFAULT_OG_IMAGE = '/og-default.svg';
-
-export function SEOHead({ title, description, path = '', type = 'website', publishDate, image, jsonLd }: SEOHeadProps) {
-  const fullTitle = title === 'Home'
-    ? 'Rohit Jain | AI Engineer — RAG, Agents, LLMOps'
-    : `${title} | Rohit Jain`;
-  const url = `${BASE_URL}${path}`;
-  const ogImage = `${BASE_URL}${image || DEFAULT_OG_IMAGE}`;
+export function SEOHead({ title, description, path = '', type = 'website', publishDate, image, jsonLd, noindex = false }: SEOHeadProps) {
+  const fullTitle = buildTitle(title);
+  const url = `${SITE_URL}${path}`;
+  const ogImage = `${SITE_URL}${image || DEFAULT_OG_IMAGE}`;
 
   const defaultJsonLd = type === 'article' ? {
     '@context': 'https://schema.org',
@@ -26,11 +24,12 @@ export function SEOHead({ title, description, path = '', type = 'website', publi
     headline: title,
     description,
     url,
+    image: ogImage,
     datePublished: publishDate,
     author: {
       '@type': 'Person',
-      name: 'Rohit Jain',
-      url: BASE_URL,
+      name: SITE_NAME,
+      url: SITE_URL,
     },
   } : undefined;
 
@@ -40,15 +39,17 @@ export function SEOHead({ title, description, path = '', type = 'website', publi
     <Helmet>
       <title>{fullTitle}</title>
       <meta name="description" content={description} />
+      {noindex && <meta name="robots" content="noindex, nofollow" />}
       <link rel="canonical" href={url} />
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={description} />
       <meta property="og:url" content={url} />
       <meta property="og:type" content={type} />
-      <meta property="og:site_name" content="Rohit Jain" />
+      <meta property="og:site_name" content={SITE_NAME} />
       <meta property="og:image" content={ogImage} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
+      <meta property="og:image:alt" content={fullTitle} />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={fullTitle} />
       <meta name="twitter:description" content={description} />

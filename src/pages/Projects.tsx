@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { SEOHead } from '../components/shared/SEOHead';
+import { pageMeta } from '../data/seo';
 import { TechTag } from '../components/shared/TechTag';
 import { useTheme } from '../context/ThemeContext';
 import { projects } from '../data/resume';
@@ -18,11 +19,7 @@ export function Projects() {
 
   return (
     <>
-      <SEOHead
-        title="Projects"
-        description="Production AI systems: multi-tenant RAG, LLM agents with MCP, document intelligence, LLMOps, and more. Built with Python, FastAPI, LangGraph."
-        path="/projects"
-      />
+      <SEOHead {...pageMeta.projects} />
 
       <div className="max-w-6xl mx-auto px-4 md:px-8 py-16 md:py-24">
         <p className="text-sm font-bold uppercase tracking-widest text-brand-primary mb-2">Projects</p>

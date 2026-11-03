@@ -1,6 +1,7 @@
 {
+  "trailingSlash": "never",
   "navigationFallback": {
     "rewrite": "/index.html",
-    "exclude": ["/assets/*", "/screenshots/*", "/photo/*", "*.svg", "*.png", "*.jpg", "*.jpeg", "*.ico"]
+    "exclude": ["/assets/*", "/screenshots/*", "/photo/*", "/og/*", "*.svg", "*.png", "*.jpg", "*.jpeg", "*.ico", "*.xml", "*.txt"]
   }
 }

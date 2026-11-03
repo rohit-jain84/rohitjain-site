@@ -1,6 +1,6 @@
 # Rohit Jain - Portfolio
 
-Personal portfolio website for Rohit Jain, Engineering Leader & Architect.
+Personal portfolio website for Rohit Jain, AI Engineer (RAG, agents, document intelligence, LLMOps).
 
 ## Tech Stack
 
@@ -189,9 +189,20 @@ Status: 301
 - CSS is purged and minified (~3KB gzipped)
 - JS bundle (~67KB gzipped, includes React)
 
+## SEO, link previews and share cards
+
+- `src/data/seo.ts` is the single source for page titles, descriptions, the canonical host (`https://www.rohitjain.net`) and the route list.
+- `npm run build` runs `scripts/generate-sitemap.ts` before the Vite build and `scripts/prerender.ts` after it. The prerender step writes one `dist/<route>/index.html` per route with that route's title, description, canonical and Open Graph tags already in the HTML, so LinkedIn, Slack, WhatsApp and search crawlers see the right preview without running JavaScript.
+- Share-card PNGs live in `public/og/` and are committed. Regenerate them after changing a title, subtitle, case-study result or article tag, or after adding a case study or article:
+
+```bash
+npm run og-data > og-data.json
+python scripts/generate-og-cards.py og-data.json   # needs Pillow and the Segoe UI fonts (Windows)
+```
+
 ## Content Updates
 
-All content is centralized in `src/data/resume.ts`. To update:
+All content is centralized in `src/data/resume.ts`, `src/data/caseStudies.ts` and `src/data/articles.ts`. To update:
 
 1. Edit the data file
 2. Run `npm run build`

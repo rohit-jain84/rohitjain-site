@@ -1,15 +1,12 @@
 import { SEOHead } from '../components/shared/SEOHead';
+import { pageMeta } from '../data/seo';
 import { TechTag } from '../components/shared/TechTag';
 import { summary, experience, skills, education } from '../data/resume';
 
 export function About() {
   return (
     <>
-      <SEOHead
-        title="About"
-        description="17 years of enterprise architecture, now building production AI systems. The story of an engineering leader who pivoted into AI — and why it works."
-        path="/about"
-      />
+      <SEOHead {...pageMeta.about} />
 
       <div className="max-w-4xl mx-auto px-4 md:px-8 py-16 md:py-24">
         {/* Intro with photo */}

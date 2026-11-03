@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { SEOHead } from '../components/shared/SEOHead';
+import { pageMeta, personJsonLd } from '../data/seo';
 import { TechTag } from '../components/shared/TechTag';
 import { useTheme } from '../context/ThemeContext';
 import { hero, projects, services, designPrinciples, testimonials, WHATSAPP_URL } from '../data/resume';
@@ -17,23 +18,7 @@ export function Home() {
 
   return (
     <>
-      <SEOHead
-        title="Home"
-        description="Rohit Jain — AI Engineer building production RAG systems, LLM agents, and document intelligence platforms. Enterprise system design principles in every layer."
-        path="/"
-        jsonLd={{
-          '@context': 'https://schema.org',
-          '@type': 'Person',
-          name: 'Rohit Jain',
-          url: 'https://rohitjain.net',
-          jobTitle: 'AI Engineer',
-          description: 'AI Engineer building production RAG systems, LLM agents, and document intelligence platforms.',
-          sameAs: [
-            'https://github.com/rohit-jain84',
-            'https://www.linkedin.com/in/rohitjaintech/',
-          ],
-        }}
-      />
+      <SEOHead {...pageMeta.home} jsonLd={personJsonLd} />
 
       {/* Hero Section */}
       <section className="hero-glow relative overflow-hidden">

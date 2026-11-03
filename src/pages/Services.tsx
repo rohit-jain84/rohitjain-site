@@ -1,15 +1,12 @@
 import { SEOHead } from '../components/shared/SEOHead';
+import { pageMeta } from '../data/seo';
 import { TechTag } from '../components/shared/TechTag';
 import { services, WHATSAPP_URL } from '../data/resume';
 
 export function Services() {
   return (
     <>
-      <SEOHead
-        title="Services"
-        description="AI engineering services: RAG systems, LLM agents, document intelligence, and LLMOps. Long-term engagements with measurable outcomes."
-        path="/services"
-      />
+      <SEOHead {...pageMeta.services} />
 
       <div className="max-w-4xl mx-auto px-4 md:px-8 py-16 md:py-24">
         <p className="text-sm font-bold uppercase tracking-widest text-brand-primary mb-2">Services</p>

@@ -1,5 +1,6 @@
 import { useParams, Link } from 'react-router-dom';
 import { SEOHead } from '../components/shared/SEOHead';
+import { articleImage } from '../data/seo';
 import { ArticleHeroImage } from '../components/shared/ArticleHeroImage';
 import { articles } from '../data/articles';
 import { WHATSAPP_URL } from '../data/resume';
@@ -123,6 +124,7 @@ export function ArticleDetail() {
         path={`/blog/${slug}`}
         type="article"
         publishDate={article.publishDate}
+        image={articleImage(article.slug)}
       />
 
       <div className="max-w-4xl mx-auto px-4 md:px-8 py-16 md:py-24">

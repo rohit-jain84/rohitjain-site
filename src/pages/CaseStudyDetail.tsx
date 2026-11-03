@@ -1,5 +1,6 @@
 import { useParams, Link } from 'react-router-dom';
 import { SEOHead } from '../components/shared/SEOHead';
+import { caseStudyImage } from '../data/seo';
 import { TechTag } from '../components/shared/TechTag';
 import { ImageLightbox } from '../components/shared/ImageLightbox';
 import { useTheme } from '../context/ThemeContext';
@@ -122,6 +123,7 @@ export function CaseStudyDetail() {
         title={study.title}
         description={study.subtitle}
         path={`/case-studies/${slug}`}
+        image={caseStudyImage(study.slug)}
       />
 
       <div className="max-w-4xl mx-auto px-4 md:px-8 py-16 md:py-24">

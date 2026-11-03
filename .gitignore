@@ -68,3 +68,6 @@ photo/
 
 # Binary files
 resume/Rohit Jain Resume.pdf
+
+# Generated share-card input (npm run og-data)
+og-data.json

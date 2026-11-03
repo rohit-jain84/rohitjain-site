@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { SEOHead } from '../components/shared/SEOHead';
+import { pageMeta } from '../data/seo';
 import { contact, WHATSAPP_URL } from '../data/resume';
 
 interface FormErrors {
@@ -49,11 +50,7 @@ export function Contact() {
 
   return (
     <>
-      <SEOHead
-        title="Contact"
-        description="Get in touch for AI engineering work. Available for freelance RAG, agent, and document intelligence projects."
-        path="/contact"
-      />
+      <SEOHead {...pageMeta.contact} />
 
       <div className="max-w-4xl mx-auto px-4 md:px-8 py-16 md:py-24">
         <p className="text-sm font-bold uppercase tracking-widest text-brand-primary mb-2">Contact</p>

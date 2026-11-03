@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { SEOHead } from '../components/shared/SEOHead';
+import { pageMeta } from '../data/seo';
 import { TechTag } from '../components/shared/TechTag';
 import { useTheme } from '../context/ThemeContext';
 import { caseStudies } from '../data/caseStudies';
@@ -15,11 +16,7 @@ export function CaseStudies() {
 
   return (
     <>
-      <SEOHead
-        title="Case Studies"
-        description="Deep-dive case studies: architecture decisions, evaluation metrics, and lessons learned from building production AI systems."
-        path="/case-studies"
-      />
+      <SEOHead {...pageMeta.caseStudies} />
 
       <div className="max-w-4xl mx-auto px-4 md:px-8 py-16 md:py-24">
         <p className="text-sm font-bold uppercase tracking-widest text-brand-primary mb-2">Case Studies</p>
